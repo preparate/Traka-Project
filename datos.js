@@ -35,7 +35,6 @@ export const pensum = [
         secciones: [
             {
                 nombreSeccion: "D1",
-                profesor: "",
                 bloques: [
                     { dia: "Lunes", inicio: 1300, fin: 1730, tipo: "Teoría", salon: "ASMA 008" }
                 ]
@@ -51,7 +50,6 @@ export const pensum = [
         secciones: [
             {
                 nombreSeccion: "D1",
-                profesor: "",
                 bloques: [
                     { dia: "Martes", inicio: 1300, fin: 1730, tipo: "Teoría", salon: "ASMA 008" }
                 ]
@@ -67,7 +65,6 @@ export const pensum = [
         secciones: [
             {
                 nombreSeccion: "D1",
-                profesor: "",
                 bloques: [
                     { dia: "Lunes", inicio: 1000, fin: 1300, tipo: "Teoría", salon: "ASMA 008" }
                 ]
@@ -84,7 +81,6 @@ export const pensum = [
         secciones: [
             {
                 nombreSeccion: "D1",
-                profesor: "",
                 bloques: [
                     { dia: "Lunes", inicio: 830, fin: 1000, tipo: "Teoría", salon: "ASMA 008" }
                 ]
