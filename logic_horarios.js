@@ -1,2 +1,7 @@
-//Para el programador que gestionará la selección y choques de horas
-//Gabriela trabaja aca > no
+//Gestionar la selección y choque de bloques
+
+import { pensum } from './datos.js';
+
+let materias = [];
+
+
