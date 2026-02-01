@@ -1,7 +1,27 @@
-//Gestionar la selección y choque de bloques
+//Gestionar la selección y prelaciones
 
-import { pensum } from './datos.js';
+import { pensum } from "./datos.js";
 
-let materias = [];
+export function validacion(idmateria, datos) {
+  const materia = datos.find((m) => m.id === idmateria);
+  if (!materia) {
+    return "Materia no encontrada";
+  }
 
+  if (materia.prelaciones.length === 0) {
+    return true;
+  }
 
+  const aprobada = materia.prelaciones.every((idprelacion) => {
+    const prela = datos.find((m) => m.id === idprelacion);
+    return prela && prela.estado === "aprobado";
+  });
+
+  return aprobada;
+}
+
+export function UC(datos, estado) {
+  return datos
+    .filter(m => m.estado === estado)
+    .reduce((total, m) => total + m.uc, 0);
+}
