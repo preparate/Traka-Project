@@ -116,9 +116,19 @@
                     <p class="text-gray-400 font-medium tracking-wide">Gestión interactiva de unidades curriculares por semestre</p>
                 </header>
 
-                <!-- Semesters Tabs -->
-                <div id="semester-tabs" class="flex gap-4 mb-10 items-center overflow-x-auto pb-4 no-scrollbar">
-                    <!-- Tabs will be rendered here -->
+                <!-- Semesters Navigation -->
+                <div class="flex items-center gap-4 mb-10">
+                    <button id="prev-semester" onclick="moveSemesters(-1)" class="p-2 rounded-full border border-gray-100 bg-white shadow-sm hover:bg-gray-50 transition-all text-slate-800 disabled:opacity-30 disabled:cursor-not-allowed group">
+                        <svg class="size-5 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    
+                    <div id="semester-tabs" class="flex flex-1 gap-4 justify-between items-center overflow-hidden no-scrollbar min-h-[70px]">
+                        <!-- Tabs will be rendered here -->
+                    </div>
+
+                    <button id="next-semester" onclick="moveSemesters(1)" class="p-2 rounded-full border border-gray-100 bg-white shadow-sm hover:bg-gray-50 transition-all text-slate-800 disabled:opacity-30 disabled:cursor-not-allowed group">
+                        <svg class="size-5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
                 </div>
 
                 <!-- Subjects Grid -->
@@ -154,6 +164,19 @@
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #cbd5e1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .semester-animate {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        #semester-tabs {
+            scroll-behavior: smooth;
         }
     </style>
 

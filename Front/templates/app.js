@@ -2,6 +2,9 @@ import { pensum } from '../../datos.js';
 import { getMateriasPorSemestre, isMateriaDisponible, UC } from '../../logic_horarios.js';
 
 let currentSemester = 1;
+let startSemester = 1;
+const VISIBLE_SEMESTERS = 4;
+const TOTAL_SEMESTERS = 9;
 
 /**
  * RENDERIZADO DE PESTAÑAS DE SEMESTRE
@@ -12,13 +15,17 @@ function renderSemesterTabs() {
 
     container.innerHTML = '';
     
-    // Semestres del 1 al 9
-    for (let i = 1; i <= 9; i++) {
+    const endSemester = Math.min(startSemester + VISIBLE_SEMESTERS - 1, TOTAL_SEMESTERS);
+
+    for (let i = startSemester; i <= endSemester; i++) {
         const semesterUC = pensum.filter(m => m.semestre === i).reduce((sum, m) => sum + m.uc, 0);
         const isActive = currentSemester === i;
         
         const btn = document.createElement('button');
-        btn.className = `flex items-center gap-4 p-2 pr-6 rounded-full border border-gray-100 shadow-sm shrink-0 transition-all ${
+        // Añadimos una animación escalonada
+        const delay = (i - startSemester) * 50;
+        btn.style.animationDelay = `${delay}ms`;
+        btn.className = `flex items-center gap-4 p-2 pr-6 rounded-full border border-gray-100 shadow-sm shrink-0 transition-all semester-animate ${
             isActive 
             ? 'bg-white ring-4 ring-indigo-900/5' 
             : 'bg-white/50 grayscale opacity-70 hover:grayscale-0 hover:opacity-100'
@@ -38,7 +45,33 @@ function renderSemesterTabs() {
         `;
         container.appendChild(btn);
     }
+    updateNavButtons();
 }
+
+function updateNavButtons() {
+    const prevBtn = document.getElementById('prev-semester');
+    const nextBtn = document.getElementById('next-semester');
+    
+    if (prevBtn) prevBtn.disabled = startSemester === 1;
+    if (nextBtn) nextBtn.disabled = startSemester + VISIBLE_SEMESTERS > TOTAL_SEMESTERS;
+}
+
+window.moveSemesters = (delta) => {
+    // Delta será +1 o -1, pero multiplicamos por VISIBLE_SEMESTERS para rotar de 4 en 4
+    const skip = delta * VISIBLE_SEMESTERS;
+    let newStart = startSemester + skip;
+    
+    // Ajustamos para no salir de los límites
+    if (newStart < 1) newStart = 1;
+    if (newStart > TOTAL_SEMESTERS - VISIBLE_SEMESTERS + 1) {
+        newStart = TOTAL_SEMESTERS - VISIBLE_SEMESTERS + 1;
+    }
+
+    if (newStart !== startSemester) {
+        startSemester = newStart;
+        renderSemesterTabs();
+    }
+};
 
 /**
  * RENDERIZADO DE MATERIAS
