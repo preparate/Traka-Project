@@ -1,2 +1,27 @@
-//Para el programador que gestionará la selección y choques de horas
-//Gabriela trabaja aca > no
+//Gestionar la selección y prelaciones
+
+import { pensum } from "./datos.js";
+
+export function validacion(idmateria, datos) {
+  const materia = datos.find((m) => m.id === idmateria);
+  if (!materia) {
+    return "Materia no encontrada";
+  }
+
+  if (materia.prelaciones.length === 0) {
+    return true;
+  }
+
+  const aprobada = materia.prelaciones.every((idprelacion) => {
+    const prela = datos.find((m) => m.id === idprelacion);
+    return prela && prela.estado === "aprobado";
+  });
+
+  return aprobada;
+}
+
+export function UC(datos, estado) {
+  return datos
+    .filter(m => m.estado === estado)
+    .reduce((total, m) => total + m.uc, 0);
+}
