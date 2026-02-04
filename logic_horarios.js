@@ -14,10 +14,21 @@ export function validacion(idmateria, datos) {
 
   const aprobada = materia.prelaciones.every((idprelacion) => {
     const prela = datos.find((m) => m.id === idprelacion);
-    return prela && prela.estado === "aprobado";
+    return prela && prela.estado === "aprobada";
   });
 
   return aprobada;
+}
+
+export function getMateriasPorSemestre(datos, semestre) {
+  return datos.filter((m) => m.semestre === semestre);
+}
+
+export function isMateriaDisponible(materia, datos) {
+  if (materia.estado === "aprobada" || materia.estado === "en curso") {
+    return true;
+  }
+  return validacion(materia.id, datos);
 }
 
 export function UC(datos, estado) {
