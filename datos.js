@@ -163,6 +163,15 @@ export const pensum = [
         prelaciones: [108], // Prela Defensa I
         estado: "pendiente"
     },
+    {
+        id: 208,
+        codigo: "ADG-25121",
+        nombre: "ACTIVIDAD COMPLEMENTARIA (DEPORTE I)",
+        semestre: 2,
+        uc: 0,
+        prelaciones: [],
+        estado: "pendiente"
+    },
     // SEMESTRE 3
     {
         id: 301,
@@ -180,6 +189,15 @@ export const pensum = [
         semestre: 3,
         uc: 5,
         prelaciones: [201, 202], // Prela Matemática II y Física I
+        estado: "pendiente"
+    },
+    {
+        id: 307,
+        codigo: "ADG-25122",
+        nombre: "ACTIVIDAD COMPLEMENTARIA (CULTURA I)",
+        semestre: 3,
+        uc: 0,
+        prelaciones: [],
         estado: "pendiente"
     },
     {
@@ -215,7 +233,7 @@ export const pensum = [
         nombre: "DEFENSA INTEGRAL DE LA NACIÓN III",
         semestre: 3,
         uc: 3,
-        prelaciones: [206], // Prela Defensa II
+        prelaciones: [207], // Prela Defensa II
         estado: "pendiente"
     },
     // SEMESTRE 4
