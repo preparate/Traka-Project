@@ -27,8 +27,8 @@ function renderSemesterTabs() {
         btn.style.animationDelay = `${delay}ms`;
         btn.className = `flex items-center gap-3 p-1.5 pr-6 rounded-2xl border transition-all duration-300 semester-animate ${
             isActive 
-            ? 'bg-indigo-900 border-indigo-900 shadow-[0_12px_30px_-5px_rgba(30,27,75,0.4)] scale-[1.03] z-10' 
-            : 'bg-white border-white/50 backdrop-blur-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:border-white hover:bg-white/80 hover:shadow-lg'
+            ? 'bg-indigo-900 border-indigo-900 shadow-[0_12px_30px_-5px_rgba(30,27,75,0.4)] scale-[1.03] z-10 cursor-default' 
+            : 'bg-white border-white/50 backdrop-blur-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:border-white hover:bg-white/80 hover:shadow-xl hover:-translate-y-1 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer'
         }`;
         
         btn.onclick = () => {
@@ -112,7 +112,7 @@ function renderSubjects() {
                 <div class="flex gap-2">
                     <button 
                         ${disponible ? `onclick="cambiarEstado(${materia.id}, 'aprobada')"` : 'disabled'} 
-                        class="flex-1 py-2.5 ${disponible ? 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20 active:scale-95' : 'bg-gray-200 cursor-not-allowed opacity-50'} text-white rounded-xl text-xs font-bold transition-all shadow-lg">
+                        class="flex-1 py-2.5 ${disponible ? 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20 hover:shadow-xl hover:-translate-y-0.5 active:scale-95 cursor-pointer' : 'bg-gray-200 cursor-not-allowed opacity-50'} text-white rounded-xl text-xs font-bold transition-all shadow-lg">
                         ${disponible ? 'APROBAR MATERIA' : 'PRELACIÓN PENDIENTE'}
                     </button>
                 </div>`;
