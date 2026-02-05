@@ -3,7 +3,7 @@ import { getMateriasPorSemestre, isMateriaDisponible, UC } from '../../logic_hor
 
 let currentSemester = 1;
 let startSemester = 1;
-const VISIBLE_SEMESTERS = 4;
+const VISIBLE_SEMESTERS = 5;
 const TOTAL_SEMESTERS = 9;
 
 /**
