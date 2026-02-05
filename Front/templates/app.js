@@ -3,7 +3,7 @@ import { getMateriasPorSemestre, isMateriaDisponible, UC } from '../../logic_hor
 
 let currentSemester = 1;
 let startSemester = 1;
-const VISIBLE_SEMESTERS = 5;
+const VISIBLE_SEMESTERS = 6;
 const TOTAL_SEMESTERS = 9;
 
 /**
@@ -25,10 +25,10 @@ function renderSemesterTabs() {
         // Añadimos una animación escalonada
         const delay = (i - startSemester) * 50;
         btn.style.animationDelay = `${delay}ms`;
-        btn.className = `flex items-center gap-4 p-2 pr-6 rounded-full border border-gray-100 shadow-sm shrink-0 transition-all semester-animate ${
+        btn.className = `flex items-center gap-3 p-1.5 pr-6 rounded-2xl border transition-all duration-300 semester-animate ${
             isActive 
-            ? 'bg-white ring-4 ring-indigo-900/5' 
-            : 'bg-white/50 grayscale opacity-70 hover:grayscale-0 hover:opacity-100'
+            ? 'bg-indigo-900 border-indigo-900 shadow-[0_12px_30px_-5px_rgba(30,27,75,0.4)] scale-[1.03] z-10' 
+            : 'bg-white border-white/50 backdrop-blur-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:border-white hover:bg-white/80 hover:shadow-lg'
         }`;
         
         btn.onclick = () => {
@@ -37,10 +37,10 @@ function renderSemesterTabs() {
         };
 
         btn.innerHTML = `
-            <div class="size-10 rounded-full ${isActive ? 'bg-indigo-900' : 'bg-blue-600'} flex items-center justify-center text-white font-bold text-xs">${i < 10 ? '0' + i : i}</div>
+            <div class="size-10 rounded-xl ${isActive ? 'bg-indigo-500 shadow-lg shadow-indigo-500/20' : 'bg-slate-100'} flex items-center justify-center ${isActive ? 'text-white' : 'text-slate-400'} font-black text-xs transition-all duration-300">${i < 10 ? '0' + i : i}</div>
             <div class="text-left">
-                <span class="block text-xs font-black uppercase tracking-widest text-slate-800">${i}° Semestre</span>
-                <span class="text-[10px] font-bold text-gray-300">${semesterUC} UC</span>
+                <span class="block text-[9px] font-black uppercase tracking-[0.2em] ${isActive ? 'text-white' : 'text-slate-400'} mb-1 transition-colors">Semestre</span>
+                <span class="block text-sm font-black ${isActive ? 'text-white' : 'text-slate-800'} leading-none transition-colors">${i}°</span>
             </div>
         `;
         container.appendChild(btn);
