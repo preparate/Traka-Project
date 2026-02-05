@@ -1,13 +1,17 @@
 import { pensum } from '../../datos.js';
 import { getMateriasPorSemestre, isMateriaDisponible, UC } from '../../logic_horarios.js';
 
-let currentSemester = 1;
-let startSemester = 1;
-const VISIBLE_SEMESTERS = 6;
-const TOTAL_SEMESTERS = 9;
+/**
+ * ESTADO GLOBAL DE LA APLICACIÓN
+ */
+let currentSemester = 1; // Semestre que se está visualizando actualmente
+let startSemester = 1;   // Primer semestre en el rango visible de la navegación
+const VISIBLE_SEMESTERS = 6; // Cantidad de pestañas de semestres visibles a la vez
+const TOTAL_SEMESTERS = 9;   // Total de semestres de la carrera
 
 /**
  * RENDERIZADO DE PESTAÑAS DE SEMESTRE
+ * Crea dinámicamente los botones de navegación para los semestres dentro del rango visible.
  */
 function renderSemesterTabs() {
     const container = document.getElementById('semester-tabs');
@@ -48,6 +52,10 @@ function renderSemesterTabs() {
     updateNavButtons();
 }
 
+/**
+ * ACTUALIZACIÓN DE BOTONES DE NAVEGACIÓN
+ * Habilita o deshabilita las flechas de desplazamiento según el rango de semestres visible.
+ */
 function updateNavButtons() {
     const prevBtn = document.getElementById('prev-semester');
     const nextBtn = document.getElementById('next-semester');
@@ -56,6 +64,10 @@ function updateNavButtons() {
     if (nextBtn) nextBtn.disabled = startSemester + VISIBLE_SEMESTERS > TOTAL_SEMESTERS;
 }
 
+/**
+ * DESPLAZAMIENTO DE SEMESTRES
+ * @param {number} delta - Dirección del desplazamiento (1 hacia adelante, -1 hacia atrás)
+ */
 window.moveSemesters = (delta) => {
     // Delta será +1 o -1, pero multiplicamos por VISIBLE_SEMESTERS para rotar de 4 en 4
     const skip = delta * VISIBLE_SEMESTERS;
@@ -75,6 +87,7 @@ window.moveSemesters = (delta) => {
 
 /**
  * RENDERIZADO DE MATERIAS
+ * Genera dinámicamente las tarjetas de las materias correspondientes al semestre actual.
  */
 function renderSubjects() {
     const grid = document.getElementById('subjects-grid');
@@ -133,7 +146,8 @@ function renderSubjects() {
 }
 
 /**
- * ACTUALIZACIÓN DE ESTADÍSTICAS
+ * ACTUALIZACIÓN DEL TABLERO (DASHBOARD)
+ * Calcula y muestra el progreso total, las UC aprobadas, en curso y por elegir.
  */
 function updateDashboard() {
     const compUC = UC(pensum, 'aprobada');
@@ -151,10 +165,10 @@ function updateDashboard() {
 }
 
 /**
- * ACCIONES
- */
-/**
- * ACCIONES
+ * CAMBIO DE ESTADO DE UNA MATERIA
+ * Permite aprobar una materia validando previamente si se cumplen sus prelaciones.
+ * @param {number} id - ID único de la materia en el pensum
+ * @param {string} nuevoEstado - El estado al que se desea cambiar (ej: 'aprobada')
  */
 window.cambiarEstado = (id, nuevoEstado) => {
     const materia = pensum.find(m => m.id === id);
@@ -168,6 +182,10 @@ window.cambiarEstado = (id, nuevoEstado) => {
     }
 };
 
+/**
+ * REINICIAR PROGRESO ACADÉMICO
+ * Restablece todas las materias a 'pendiente' y vuelve al semestre 1.
+ */
 window.resetProgress = () => {
     if (confirm('¿Estás seguro de que deseas borrar todo tu avance académico? Esta acción no se puede deshacer.')) {
         pensum.forEach(m => m.estado = 'pendiente');
@@ -176,6 +194,10 @@ window.resetProgress = () => {
     }
 };
 
+/**
+ * RENDERIZADO TOTAL
+ * Orquestador que actualiza todas las vistas de la aplicación.
+ */
 function renderAll() {
     renderSemesterTabs();
     renderSubjects();
