@@ -155,13 +155,21 @@ function updateDashboard() {
     const totalUC = 240;
     const progress = (compUC / totalUC) * 100;
 
-    document.getElementById('comp-uc-total').innerText = compUC;
-    document.getElementById('curso-uc-total').innerText = cursoUC;
-    document.getElementById('elegir-uc-total').innerText = totalUC - compUC - cursoUC;
+    // Actualizamos los elementos solo si existen en el DOM
+    const elComp = document.getElementById('comp-uc-total');
+    const elCurso = document.getElementById('curso-uc-total');
+    const elElegir = document.getElementById('elegir-uc-total');
+    const elPercent = document.getElementById('progress-percent');
+    const elBar = document.getElementById('progress-bar');
+    const elText = document.getElementById('progress-text');
+
+    if (elComp) elComp.innerText = compUC;
+    if (elCurso) elCurso.innerText = cursoUC;
+    if (elElegir) elElegir.innerText = totalUC - compUC - cursoUC;
     
-    document.getElementById('progress-percent').innerText = `${Math.round(progress)}%`;
-    document.getElementById('progress-bar').style.width = `${progress}%`;
-    document.getElementById('progress-text').innerText = `${compUC} de ${totalUC} UC alcanzadas satisfactoriamente`;
+    if (elPercent) elPercent.innerText = `${Math.round(progress)}%`;
+    if (elBar) elBar.style.width = `${progress}%`;
+    if (elText) elText.innerText = `${compUC} de ${totalUC} UC alcanzadas satisfactoriamente`;
 }
 
 /**
