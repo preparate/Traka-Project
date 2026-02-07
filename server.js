@@ -16,8 +16,11 @@ app.get('/api/pensum', async (req, res) => {
     try {
         const id_estudiante = 1; // ID fijo para demostración
         
-        // Obtener todas las materias
+        // Obtener todas las materias con sus prelaciones
         const materias = await prisma.materias.findMany({
+            include: {
+                prelaciones_prelaciones_id_materiaTomaterias: true
+            },
             orderBy: { semestre: 'asc' }
         });
         
@@ -36,8 +39,8 @@ app.get('/api/pensum', async (req, res) => {
                 semestre: m.semestre,
                 uc: m.uc,
                 estado: p ? p.estado : 'pendiente',
-                // Aquí podrías agregar prelaciones si las necesitas en el front
-                prelaciones: [] // Por ahora vacío, se puede expandir
+                // Extraemos solo los IDs de las materias que prelan a esta
+                prelaciones: m.prelaciones_prelaciones_id_materiaTomaterias.map(pre => pre.id_prelante)
             };
         });
         
@@ -45,6 +48,20 @@ app.get('/api/pensum', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error al obtener el pensum' });
+    }
+});
+
+// Endpoint para reiniciar todo el progreso
+app.post('/api/progreso/reset', async (req, res) => {
+    const id_estudiante = 1; // ID fijo
+    try {
+        await prisma.progreso_academico.deleteMany({
+            where: { id_estudiante }
+        });
+        res.json({ message: 'Progreso reiniciado con éxito' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al reiniciar el progreso' });
     }
 });
 

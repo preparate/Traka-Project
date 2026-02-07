@@ -106,6 +106,7 @@ function renderSubjects() {
         let borderClass = 'border-l-slate-300/50';
         let statusTag = '';
         let buttons = '';
+        const opacidad = disponible ? '' : 'opacity-50 pointer-events-none';
 
         if (materia.estado === 'aprobada') {
             borderClass = 'border-l-emerald-500';
@@ -117,7 +118,6 @@ function renderSubjects() {
                     </div>
                 </div>`;
         } else {
-            const opacidad = disponible ? '' : 'opacity-50 pointer-events-none';
             statusTag = `
                 <div class="flex justify-between items-center mb-6">
                     <span class="text-[9px] font-black uppercase tracking-[0.2em] ${disponible ? 'text-gray-400 bg-gray-50 border-gray-100' : 'text-red-400 bg-red-50 border-red-100'} px-3 py-1.5 rounded-lg border">${disponible ? 'Disponible' : 'Bloqueada'}</span>
@@ -132,7 +132,7 @@ function renderSubjects() {
                 </div>`;
         }
 
-        card.className = `bg-white rounded-2xl border border-gray-100 shadow-sm border-l-4 ${borderClass} p-6 flex flex-col min-h-[180px] group hover:shadow-md transition-all`;
+        card.className = `bg-white rounded-2xl border border-gray-100 shadow-sm border-l-4 ${borderClass} p-6 flex flex-col min-h-[180px] group hover:shadow-md transition-all ${opacidad}`;
         card.innerHTML = `
             <div class="flex justify-between items-start mb-4">
                 <span class="text-[10px] font-bold text-gray-400 bg-gray-50 px-2.5 py-1 rounded tracking-wide border border-gray-100">${materia.codigo}</span>
@@ -175,6 +175,13 @@ function updateDashboard() {
  * CAMBIO DE ESTADO (VÍA API)
  */
 window.cambiarEstado = async (id, nuevoEstado) => {
+    // VALIDACIÓN DE SEGURIDAD EN CLIENTE
+    const materia = pensum.find(m => m.id === id);
+    if (nuevoEstado === 'aprobada' && !isMateriaDisponible(materia, pensum)) {
+        alert('❌ BLOQUEADO: No puedes aprobar esta materia porque aún tienes prelaciones pendientes.');
+        return;
+    }
+
     try {
         const response = await fetch('http://localhost:3000/api/progreso', {
             method: 'POST',
@@ -184,8 +191,6 @@ window.cambiarEstado = async (id, nuevoEstado) => {
         
         if (!response.ok) throw new Error('Error al guardar progreso');
         
-        // Actualizamos estado local para no recargar todo si no es necesario (o volvemos a fetch)
-        const materia = pensum.find(m => m.id === id);
         if (materia) materia.estado = nuevoEstado;
         
         renderAll();
@@ -196,9 +201,20 @@ window.cambiarEstado = async (id, nuevoEstado) => {
 };
 
 window.resetProgress = async () => {
-    if (confirm('¿Estás seguro de que deseas borrar todo tu avance académico?')) {
-        // En una app real esto llamaría a un endpoint de reset
-        alert("Función de reset pendiente de implementar en backend.");
+    if (confirm('¿Estás seguro de que deseas borrar todo tu avance académico? Esta acción no se puede deshacer.')) {
+        try {
+            const response = await fetch('http://localhost:3000/api/progreso/reset', {
+                method: 'POST'
+            });
+            if (!response.ok) throw new Error('Error al reiniciar progreso');
+            
+            await fetchPensum(); // Volvemos a cargar los datos limpios
+            currentSemester = 1;
+            renderAll();
+        } catch (error) {
+            console.error(error);
+            alert("Error al contactar con el servidor para reiniciar el progreso.");
+        }
     }
 };
 

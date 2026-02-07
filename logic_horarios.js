@@ -2,21 +2,19 @@
 
 
 export function validacion(idmateria, datos) {
-  const materia = datos.find((m) => m.id === idmateria);
+  const materia = datos.find((m) => Number(m.id) === Number(idmateria));
   if (!materia) {
-    return "Materia no encontrada";
+    return false; // Cambiado de string a false
   }
 
-  if (materia.prelaciones.length === 0) {
+  if (!materia.prelaciones || materia.prelaciones.length === 0) {
     return true;
   }
 
-  const aprobada = materia.prelaciones.every((idprelacion) => {
-    const prela = datos.find((m) => m.id === idprelacion);
+  return materia.prelaciones.every((idprelacion) => {
+    const prela = datos.find((m) => Number(m.id) === Number(idprelacion));
     return prela && prela.estado === "aprobada";
   });
-
-  return aprobada;
 }
 
 export function getMateriasPorSemestre(datos, semestre) {
