@@ -1,17 +1,32 @@
-import { pensum } from '../../datos.js';
+// Eliminamos los imports estáticos que no funcionan en el navegador con Prisma
 import { getMateriasPorSemestre, isMateriaDisponible, UC } from '../../logic_horarios.js';
 
 /**
  * ESTADO GLOBAL DE LA APLICACIÓN
  */
-let currentSemester = 1; // Semestre que se está visualizando actualmente
-let startSemester = 1;   // Primer semestre en el rango visible de la navegación
-const VISIBLE_SEMESTERS = 6; // Cantidad de pestañas de semestres visibles a la vez
-const TOTAL_SEMESTERS = 9;   // Total de semestres de la carrera
+let pensum = [];       // Se cargará desde la base de datos
+let currentSemester = 1; 
+let startSemester = 1;   
+const VISIBLE_SEMESTERS = 6; 
+const TOTAL_SEMESTERS = 9;   
+
+/**
+ * CARGAR DATOS DESDE LA API
+ */
+async function fetchPensum() {
+    try {
+        const response = await fetch('http://localhost:3000/api/pensum');
+        if (!response.ok) throw new Error('Error al cargar datos');
+        pensum = await response.json();
+        console.log("Pensum cargado de DB:", pensum);
+    } catch (error) {
+        console.error("Error cargando pensum:", error);
+        alert("No se pudo conectar con el servidor. Asegúrate de que server.js esté corriendo.");
+    }
+}
 
 /**
  * RENDERIZADO DE PESTAÑAS DE SEMESTRE
- * Crea dinámicamente los botones de navegación para los semestres dentro del rango visible.
  */
 function renderSemesterTabs() {
     const container = document.getElementById('semester-tabs');
@@ -26,13 +41,12 @@ function renderSemesterTabs() {
         const isActive = currentSemester === i;
         
         const btn = document.createElement('button');
-        // Añadimos una animación escalonada
         const delay = (i - startSemester) * 50;
         btn.style.animationDelay = `${delay}ms`;
         btn.className = `flex items-center gap-3 p-1.5 pr-6 rounded-2xl border transition-all duration-300 semester-animate ${
             isActive 
             ? 'bg-indigo-900 border-indigo-900 shadow-[0_12px_30px_-5px_rgba(30,27,75,0.4)] scale-[1.03] z-10 cursor-default' 
-            : 'bg-white border-white/50 backdrop-blur-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:border-white hover:bg-white/80 hover:shadow-xl hover:-translate-y-1 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer'
+            : 'bg-white border-white/50 backdrop-blur-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:border-white hover:bg-white/80 hover:shadow-xl hover:-translate-y-1 hover:scale-105 active:scale-95 cursor-pointer'
         }`;
         
         btn.onclick = () => {
@@ -43,8 +57,8 @@ function renderSemesterTabs() {
         btn.innerHTML = `
             <div class="size-10 rounded-xl ${isActive ? 'bg-indigo-500 shadow-lg shadow-indigo-500/20' : 'bg-slate-100'} flex items-center justify-center ${isActive ? 'text-white' : 'text-slate-400'} font-black text-xs transition-all duration-300">${i < 10 ? '0' + i : i}</div>
             <div class="text-left">
-                <span class="block text-[9px] font-black uppercase tracking-[0.2em] ${isActive ? 'text-white' : 'text-slate-400'} mb-1 transition-colors">Semestre</span>
-                <span class="block text-sm font-black ${isActive ? 'text-white' : 'text-slate-800'} leading-none transition-colors">${i}°</span>
+                <span class="block text-xs font-black uppercase tracking-[0.2em] ${isActive ? 'text-white' : 'text-slate-400'} mb-1 transition-colors">Semestre</span>
+                <span class="block text-xs font-black ${isActive ? 'text-white' : 'text-slate-800'} leading-none transition-colors"></span>
             </div>
         `;
         container.appendChild(btn);
@@ -52,10 +66,6 @@ function renderSemesterTabs() {
     updateNavButtons();
 }
 
-/**
- * ACTUALIZACIÓN DE BOTONES DE NAVEGACIÓN
- * Habilita o deshabilita las flechas de desplazamiento según el rango de semestres visible.
- */
 function updateNavButtons() {
     const prevBtn = document.getElementById('prev-semester');
     const nextBtn = document.getElementById('next-semester');
@@ -64,16 +74,10 @@ function updateNavButtons() {
     if (nextBtn) nextBtn.disabled = startSemester + VISIBLE_SEMESTERS > TOTAL_SEMESTERS;
 }
 
-/**
- * DESPLAZAMIENTO DE SEMESTRES
- * @param {number} delta - Dirección del desplazamiento (1 hacia adelante, -1 hacia atrás)
- */
 window.moveSemesters = (delta) => {
-    // Delta será +1 o -1, pero multiplicamos por VISIBLE_SEMESTERS para rotar de 4 en 4
     const skip = delta * VISIBLE_SEMESTERS;
     let newStart = startSemester + skip;
     
-    // Ajustamos para no salir de los límites
     if (newStart < 1) newStart = 1;
     if (newStart > TOTAL_SEMESTERS - VISIBLE_SEMESTERS + 1) {
         newStart = TOTAL_SEMESTERS - VISIBLE_SEMESTERS + 1;
@@ -87,7 +91,6 @@ window.moveSemesters = (delta) => {
 
 /**
  * RENDERIZADO DE MATERIAS
- * Genera dinámicamente las tarjetas de las materias correspondientes al semestre actual.
  */
 function renderSubjects() {
     const grid = document.getElementById('subjects-grid');
@@ -100,7 +103,6 @@ function renderSubjects() {
         const disponible = isMateriaDisponible(materia, pensum);
         const card = document.createElement('div');
         
-        // Estilos base según estado
         let borderClass = 'border-l-slate-300/50';
         let statusTag = '';
         let buttons = '';
@@ -115,7 +117,6 @@ function renderSubjects() {
                     </div>
                 </div>`;
         } else {
-            // Pendiente o Bloqueada
             const opacidad = disponible ? '' : 'opacity-50 pointer-events-none';
             statusTag = `
                 <div class="flex justify-between items-center mb-6">
@@ -146,8 +147,7 @@ function renderSubjects() {
 }
 
 /**
- * ACTUALIZACIÓN DEL TABLERO (DASHBOARD)
- * Calcula y muestra el progreso total, las UC aprobadas, en curso y por elegir.
+ * ACTUALIZACIÓN DEL TABLERO
  */
 function updateDashboard() {
     const compUC = UC(pensum, 'aprobada');
@@ -155,7 +155,6 @@ function updateDashboard() {
     const totalUC = 240;
     const progress = (compUC / totalUC) * 100;
 
-    // Actualizamos los elementos solo si existen en el DOM
     const elComp = document.getElementById('comp-uc-total');
     const elCurso = document.getElementById('curso-uc-total');
     const elElegir = document.getElementById('elegir-uc-total');
@@ -173,44 +172,44 @@ function updateDashboard() {
 }
 
 /**
- * CAMBIO DE ESTADO DE UNA MATERIA
- * Permite aprobar una materia validando previamente si se cumplen sus prelaciones.
- * @param {number} id - ID único de la materia en el pensum
- * @param {string} nuevoEstado - El estado al que se desea cambiar (ej: 'aprobada')
+ * CAMBIO DE ESTADO (VÍA API)
  */
-window.cambiarEstado = (id, nuevoEstado) => {
-    const materia = pensum.find(m => m.id === id);
-    if (materia) {
-        if (nuevoEstado === 'aprobada' && !isMateriaDisponible(materia, pensum)) {
-            alert('No puedes aprobar esta materia aún. Debes completar las prelaciones indicadas en la malla oficial.');
-            return;
-        }
-        materia.estado = nuevoEstado;
+window.cambiarEstado = async (id, nuevoEstado) => {
+    try {
+        const response = await fetch('http://localhost:3000/api/progreso', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id_materia: id, estado: nuevoEstado })
+        });
+        
+        if (!response.ok) throw new Error('Error al guardar progreso');
+        
+        // Actualizamos estado local para no recargar todo si no es necesario (o volvemos a fetch)
+        const materia = pensum.find(m => m.id === id);
+        if (materia) materia.estado = nuevoEstado;
+        
         renderAll();
+    } catch (error) {
+        console.error(error);
+        alert("Error al guardar el progreso en la base de datos.");
     }
 };
 
-/**
- * REINICIAR PROGRESO ACADÉMICO
- * Restablece todas las materias a 'pendiente' y vuelve al semestre 1.
- */
-window.resetProgress = () => {
-    if (confirm('¿Estás seguro de que deseas borrar todo tu avance académico? Esta acción no se puede deshacer.')) {
-        pensum.forEach(m => m.estado = 'pendiente');
-        currentSemester = 1;
-        renderAll();
+window.resetProgress = async () => {
+    if (confirm('¿Estás seguro de que deseas borrar todo tu avance académico?')) {
+        // En una app real esto llamaría a un endpoint de reset
+        alert("Función de reset pendiente de implementar en backend.");
     }
 };
 
-/**
- * RENDERIZADO TOTAL
- * Orquestador que actualiza todas las vistas de la aplicación.
- */
 function renderAll() {
     renderSemesterTabs();
     renderSubjects();
     updateDashboard();
 }
 
-// Inicialización
-document.addEventListener('DOMContentLoaded', renderAll);
+// Inicialización asíncrona
+document.addEventListener('DOMContentLoaded', async () => {
+    await fetchPensum();
+    renderAll();
+});

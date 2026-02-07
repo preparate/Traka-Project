@@ -1,9 +1,17 @@
 {
   "dependencies": {
+    "@prisma/client": "6.4.1",
     "@tailwindcss/cli": "^4.1.18",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
     "tailwindcss": "^4.1.18"
   },
   "scripts": {
     "dev": "tailwindcss -i ./src/input.css -o ./output.css --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.1",
+    "prisma": "6.4.1"
   }
 }

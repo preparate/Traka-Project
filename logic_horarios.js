@@ -1,6 +1,5 @@
 //Gestionar la selección y prelaciones
 
-import { pensum } from "./datos.js";
 
 export function validacion(idmateria, datos) {
   const materia = datos.find((m) => m.id === idmateria);
