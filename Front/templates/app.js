@@ -1,10 +1,29 @@
-import { pensum } from '../../datos.js';
+// Eliminamos los imports estáticos que no funcionan en el navegador con Prisma
 import { getMateriasPorSemestre, isMateriaDisponible, UC } from '../../logic_horarios.js';
 
-let currentSemester = 1;
-let startSemester = 1;
-const VISIBLE_SEMESTERS = 4;
-const TOTAL_SEMESTERS = 9;
+/**
+ * ESTADO GLOBAL DE LA APLICACIÓN
+ */
+let pensum = [];       // Se cargará desde la base de datos
+let currentSemester = 1; 
+let startSemester = 1;   
+const VISIBLE_SEMESTERS = 6; 
+const TOTAL_SEMESTERS = 9;   
+
+/**
+ * CARGAR DATOS DESDE LA API
+ */
+async function fetchPensum() {
+    try {
+        const response = await fetch('http://localhost:3000/api/pensum');
+        if (!response.ok) throw new Error('Error al cargar datos');
+        pensum = await response.json();
+        console.log("Pensum cargado de DB:", pensum);
+    } catch (error) {
+        console.error("Error cargando pensum:", error);
+        alert("No se pudo conectar con el servidor. Asegúrate de que server.js esté corriendo.");
+    }
+}
 
 /**
  * RENDERIZADO DE PESTAÑAS DE SEMESTRE
@@ -22,13 +41,12 @@ function renderSemesterTabs() {
         const isActive = currentSemester === i;
         
         const btn = document.createElement('button');
-        // Añadimos una animación escalonada
         const delay = (i - startSemester) * 50;
         btn.style.animationDelay = `${delay}ms`;
-        btn.className = `flex items-center gap-4 p-2 pr-6 rounded-full border border-gray-100 shadow-sm shrink-0 transition-all semester-animate ${
+        btn.className = `flex items-center gap-3 p-1.5 pr-6 rounded-2xl border transition-all duration-300 semester-animate ${
             isActive 
-            ? 'bg-white ring-4 ring-indigo-900/5' 
-            : 'bg-white/50 grayscale opacity-70 hover:grayscale-0 hover:opacity-100'
+            ? 'bg-indigo-900 border-indigo-900 shadow-[0_12px_30px_-5px_rgba(30,27,75,0.4)] scale-[1.03] z-10 cursor-default' 
+            : 'bg-white border-white/50 backdrop-blur-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:border-white hover:bg-white/80 hover:shadow-xl hover:-translate-y-1 hover:scale-105 active:scale-95 cursor-pointer'
         }`;
         
         btn.onclick = () => {
@@ -37,10 +55,10 @@ function renderSemesterTabs() {
         };
 
         btn.innerHTML = `
-            <div class="size-10 rounded-full ${isActive ? 'bg-indigo-900' : 'bg-blue-600'} flex items-center justify-center text-white font-bold text-xs">${i < 10 ? '0' + i : i}</div>
+            <div class="size-10 rounded-xl ${isActive ? 'bg-indigo-500 shadow-lg shadow-indigo-500/20' : 'bg-slate-100'} flex items-center justify-center ${isActive ? 'text-white' : 'text-slate-400'} font-black text-xs transition-all duration-300">${i < 10 ? '0' + i : i}</div>
             <div class="text-left">
-                <span class="block text-xs font-black uppercase tracking-widest text-slate-800">${i}° Semestre</span>
-                <span class="text-[10px] font-bold text-gray-300">${semesterUC} UC</span>
+                <span class="block text-xs font-black uppercase tracking-[0.2em] ${isActive ? 'text-white' : 'text-slate-400'} mb-1 transition-colors">Semestre</span>
+                <span class="block text-xs font-black ${isActive ? 'text-white' : 'text-slate-800'} leading-none transition-colors"></span>
             </div>
         `;
         container.appendChild(btn);
@@ -57,11 +75,9 @@ function updateNavButtons() {
 }
 
 window.moveSemesters = (delta) => {
-    // Delta será +1 o -1, pero multiplicamos por VISIBLE_SEMESTERS para rotar de 4 en 4
     const skip = delta * VISIBLE_SEMESTERS;
     let newStart = startSemester + skip;
     
-    // Ajustamos para no salir de los límites
     if (newStart < 1) newStart = 1;
     if (newStart > TOTAL_SEMESTERS - VISIBLE_SEMESTERS + 1) {
         newStart = TOTAL_SEMESTERS - VISIBLE_SEMESTERS + 1;
@@ -87,10 +103,10 @@ function renderSubjects() {
         const disponible = isMateriaDisponible(materia, pensum);
         const card = document.createElement('div');
         
-        // Estilos base según estado
         let borderClass = 'border-l-slate-300/50';
         let statusTag = '';
         let buttons = '';
+        const opacidad = disponible ? '' : 'opacity-50 pointer-events-none';
 
         if (materia.estado === 'aprobada') {
             borderClass = 'border-l-emerald-500';
@@ -102,8 +118,6 @@ function renderSubjects() {
                     </div>
                 </div>`;
         } else {
-            // Pendiente o Bloqueada
-            const opacidad = disponible ? '' : 'opacity-50 pointer-events-none';
             statusTag = `
                 <div class="flex justify-between items-center mb-6">
                     <span class="text-[9px] font-black uppercase tracking-[0.2em] ${disponible ? 'text-gray-400 bg-gray-50 border-gray-100' : 'text-red-400 bg-red-50 border-red-100'} px-3 py-1.5 rounded-lg border">${disponible ? 'Disponible' : 'Bloqueada'}</span>
@@ -112,13 +126,13 @@ function renderSubjects() {
                 <div class="flex gap-2">
                     <button 
                         ${disponible ? `onclick="cambiarEstado(${materia.id}, 'aprobada')"` : 'disabled'} 
-                        class="flex-1 py-2.5 ${disponible ? 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20 active:scale-95' : 'bg-gray-200 cursor-not-allowed opacity-50'} text-white rounded-xl text-xs font-bold transition-all shadow-lg">
+                        class="flex-1 py-2.5 ${disponible ? 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20 hover:shadow-xl hover:-translate-y-0.5 active:scale-95 cursor-pointer' : 'bg-gray-200 cursor-not-allowed opacity-50'} text-white rounded-xl text-xs font-bold transition-all shadow-lg">
                         ${disponible ? 'APROBAR MATERIA' : 'PRELACIÓN PENDIENTE'}
                     </button>
                 </div>`;
         }
 
-        card.className = `bg-white rounded-2xl border border-gray-100 shadow-sm border-l-4 ${borderClass} p-6 flex flex-col min-h-[180px] group hover:shadow-md transition-all`;
+        card.className = `bg-white rounded-2xl border border-gray-100 shadow-sm border-l-4 ${borderClass} p-6 flex flex-col min-h-[180px] group hover:shadow-md transition-all ${opacidad}`;
         card.innerHTML = `
             <div class="flex justify-between items-start mb-4">
                 <span class="text-[10px] font-bold text-gray-400 bg-gray-50 px-2.5 py-1 rounded tracking-wide border border-gray-100">${materia.codigo}</span>
@@ -133,7 +147,7 @@ function renderSubjects() {
 }
 
 /**
- * ACTUALIZACIÓN DE ESTADÍSTICAS
+ * ACTUALIZACIÓN DEL TABLERO
  */
 function updateDashboard() {
     const compUC = UC(pensum, 'aprobada');
@@ -141,38 +155,66 @@ function updateDashboard() {
     const totalUC = 240;
     const progress = (compUC / totalUC) * 100;
 
-    document.getElementById('comp-uc-total').innerText = compUC;
-    document.getElementById('curso-uc-total').innerText = cursoUC;
-    document.getElementById('elegir-uc-total').innerText = totalUC - compUC - cursoUC;
+    const elComp = document.getElementById('comp-uc-total');
+    const elCurso = document.getElementById('curso-uc-total');
+    const elElegir = document.getElementById('elegir-uc-total');
+    const elPercent = document.getElementById('progress-percent');
+    const elBar = document.getElementById('progress-bar');
+    const elText = document.getElementById('progress-text');
+
+    if (elComp) elComp.innerText = compUC;
+    if (elCurso) elCurso.innerText = cursoUC;
+    if (elElegir) elElegir.innerText = totalUC - compUC - cursoUC;
     
-    document.getElementById('progress-percent').innerText = `${Math.round(progress)}%`;
-    document.getElementById('progress-bar').style.width = `${progress}%`;
-    document.getElementById('progress-text').innerText = `${compUC} de ${totalUC} UC alcanzadas satisfactoriamente`;
+    if (elPercent) elPercent.innerText = `${Math.round(progress)}%`;
+    if (elBar) elBar.style.width = `${progress}%`;
+    if (elText) elText.innerText = `${compUC} de ${totalUC} UC alcanzadas satisfactoriamente`;
 }
 
 /**
- * ACCIONES
+ * CAMBIO DE ESTADO (VÍA API)
  */
-/**
- * ACCIONES
- */
-window.cambiarEstado = (id, nuevoEstado) => {
+window.cambiarEstado = async (id, nuevoEstado) => {
+    // VALIDACIÓN DE SEGURIDAD EN CLIENTE
     const materia = pensum.find(m => m.id === id);
-    if (materia) {
-        if (nuevoEstado === 'aprobada' && !isMateriaDisponible(materia, pensum)) {
-            alert('No puedes aprobar esta materia aún. Debes completar las prelaciones indicadas en la malla oficial.');
-            return;
-        }
-        materia.estado = nuevoEstado;
+    if (nuevoEstado === 'aprobada' && !isMateriaDisponible(materia, pensum)) {
+        alert('❌ BLOQUEADO: No puedes aprobar esta materia porque aún tienes prelaciones pendientes.');
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:3000/api/progreso', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id_materia: id, estado: nuevoEstado })
+        });
+        
+        if (!response.ok) throw new Error('Error al guardar progreso');
+        
+        if (materia) materia.estado = nuevoEstado;
+        
         renderAll();
+    } catch (error) {
+        console.error(error);
+        alert("Error al guardar el progreso en la base de datos.");
     }
 };
 
-window.resetProgress = () => {
+window.resetProgress = async () => {
     if (confirm('¿Estás seguro de que deseas borrar todo tu avance académico? Esta acción no se puede deshacer.')) {
-        pensum.forEach(m => m.estado = 'pendiente');
-        currentSemester = 1;
-        renderAll();
+        try {
+            const response = await fetch('http://localhost:3000/api/progreso/reset', {
+                method: 'POST'
+            });
+            if (!response.ok) throw new Error('Error al reiniciar progreso');
+            
+            await fetchPensum(); // Volvemos a cargar los datos limpios
+            currentSemester = 1;
+            renderAll();
+        } catch (error) {
+            console.error(error);
+            alert("Error al contactar con el servidor para reiniciar el progreso.");
+        }
     }
 };
 
@@ -182,5 +224,8 @@ function renderAll() {
     updateDashboard();
 }
 
-// Inicialización
-document.addEventListener('DOMContentLoaded', renderAll);
+// Inicialización asíncrona
+document.addEventListener('DOMContentLoaded', async () => {
+    await fetchPensum();
+    renderAll();
+});
