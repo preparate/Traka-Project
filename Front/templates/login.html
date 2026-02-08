@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="/images/favicon.png">
 </head>
 
 
 
-<body class="bg-linear-to-tr from-green-300 via-white to-blue-400 min-h-screen flex  flex-col ">
+<body class="bg-linear-to-bl from-green-300 via-white to-blue-400 min-h-screen flex  flex-col ">
 
     <header class="pt-8">
     <div class="top-8 left-10 absolute">
@@ -30,17 +33,20 @@
     <form action="#" method="POST">
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2">Documento</label>
-        <input type="email" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <input placeholder="Ingrese su cedula" type="email" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
       </div>
       
       <div class="mb-6">
         <label class="block text-gray-700 text-sm font-bold mb-2">Contraseña</label>
-        <input type="password" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <input placeholder="Ingrese su contraseña" type="password" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        
       </div>
 
-      <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+      <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2 px-4 cursor-pointer rounded-lg hover:bg-blue-700 transition duration-300">
         Iniciar Sesión
       </button>
+
+      <span class="block text-center text-indigo-500 hover:underline transition-transform cursor-pointer mt-4">Recuperar contraseña </span>
     </form>
 
   </div>
