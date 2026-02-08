@@ -1,1 +1,0 @@
-//Programador de logica de prelacion (Damico)

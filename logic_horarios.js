@@ -1,23 +1,31 @@
 //Gestionar la selección y prelaciones
 
-import { pensum } from "./datos.js";
 
 export function validacion(idmateria, datos) {
-  const materia = datos.find((m) => m.id === idmateria);
+  const materia = datos.find((m) => Number(m.id) === Number(idmateria));
   if (!materia) {
-    return "Materia no encontrada";
+    return false; // Cambiado de string a false
   }
 
-  if (materia.prelaciones.length === 0) {
+  if (!materia.prelaciones || materia.prelaciones.length === 0) {
     return true;
   }
 
-  const aprobada = materia.prelaciones.every((idprelacion) => {
-    const prela = datos.find((m) => m.id === idprelacion);
-    return prela && prela.estado === "aprobado";
+  return materia.prelaciones.every((idprelacion) => {
+    const prela = datos.find((m) => Number(m.id) === Number(idprelacion));
+    return prela && prela.estado === "aprobada";
   });
+}
 
-  return aprobada;
+export function getMateriasPorSemestre(datos, semestre) {
+  return datos.filter((m) => m.semestre === semestre);
+}
+
+export function isMateriaDisponible(materia, datos) {
+  if (materia.estado === "aprobada" || materia.estado === "en curso") {
+    return true;
+  }
+  return validacion(materia.id, datos);
 }
 
 export function UC(datos, estado) {
