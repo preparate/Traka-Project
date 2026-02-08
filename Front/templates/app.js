@@ -43,10 +43,10 @@ function renderSemesterTabs() {
         const btn = document.createElement('button');
         const delay = (i - startSemester) * 50;
         btn.style.animationDelay = `${delay}ms`;
-        btn.className = `flex items-center gap-3 p-1.5 pr-6 rounded-2xl border transition-all duration-300 semester-animate ${
+        btn.className = `flex items-center gap-4 p-1.5 pr-8 rounded-2xl border transition-all duration-300 semester-animate min-w-[180px] ${
             isActive 
-            ? 'bg-indigo-900 border-indigo-900 shadow-[0_12px_30px_-5px_rgba(30,27,75,0.4)] scale-[1.03] z-10 cursor-default' 
-            : 'bg-white border-white/50 backdrop-blur-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:border-white hover:bg-white/80 hover:shadow-xl hover:-translate-y-1 hover:scale-105 active:scale-95 cursor-pointer'
+            ? 'bg-indigo-900 border-indigo-900 shadow-[0_4px_15px_-3px_rgba(30,27,75,0.3)] scale-[1.03] z-10 cursor-default' 
+            : 'bg-white border-white/50 backdrop-blur-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:border-white hover:bg-white/80 hover:shadow-md hover:-translate-y-0.5 hover:scale-105 active:scale-95 cursor-pointer'
         }`;
         
         btn.onclick = () => {
@@ -55,10 +55,10 @@ function renderSemesterTabs() {
         };
 
         btn.innerHTML = `
-            <div class="size-10 rounded-xl ${isActive ? 'bg-indigo-500 shadow-lg shadow-indigo-500/20' : 'bg-slate-100'} flex items-center justify-center ${isActive ? 'text-white' : 'text-slate-400'} font-black text-xs transition-all duration-300">${i < 10 ? '0' + i : i}</div>
-            <div class="text-left">
-                <span class="block text-xs font-black uppercase tracking-[0.2em] ${isActive ? 'text-white' : 'text-slate-400'} mb-1 transition-colors">Semestre</span>
-                <span class="block text-xs font-black ${isActive ? 'text-white' : 'text-slate-800'} leading-none transition-colors"></span>
+            <div class="size-10 shrink-0 rounded-xl ${isActive ? 'bg-indigo-500 shadow-lg shadow-indigo-500/20' : 'bg-slate-100'} flex items-center justify-center ${isActive ? 'text-white' : 'text-slate-400'} font-black text-xs transition-all duration-300">${i < 10 ? '0' + i : i}</div>
+            <div class="text-left overflow-hidden">
+                <span class="block text-[10px] font-black uppercase tracking-[0.2em] ${isActive ? 'text-white' : 'text-slate-400'} mb-1 transition-colors">Semestre</span>
+                <span class="block text-xs font-black ${isActive ? 'text-white' : 'text-slate-800'} leading-none transition-colors truncate"></span>
             </div>
         `;
         container.appendChild(btn);
@@ -106,7 +106,7 @@ function renderSubjects() {
         let borderClass = 'border-l-slate-300/50';
         let statusTag = '';
         let buttons = '';
-        const opacidad = disponible ? '' : 'opacity-50 pointer-events-none';
+        const opacidad = disponible ? '' : 'opacity-75';
 
         if (materia.estado === 'aprobada') {
             borderClass = 'border-l-emerald-500';
@@ -120,13 +120,13 @@ function renderSubjects() {
         } else {
             statusTag = `
                 <div class="flex justify-between items-center mb-6">
-                    <span class="text-[9px] font-black uppercase tracking-[0.2em] ${disponible ? 'text-gray-400 bg-gray-50 border-gray-100' : 'text-red-400 bg-red-50 border-red-100'} px-3 py-1.5 rounded-lg border">${disponible ? 'Disponible' : 'Bloqueada'}</span>
+                    <span class="text-[9px] font-black uppercase tracking-[0.2em] ${disponible ? 'text-slate-500 bg-slate-50 border-slate-200' : 'text-red-600 bg-red-50/80 border-red-200'} px-3 py-1.5 rounded-lg border shadow-sm">${disponible ? 'Disponible' : 'Bloqueada'}</span>
                 </div>`;
             buttons = `
                 <div class="flex gap-2">
                     <button 
                         ${disponible ? `onclick="cambiarEstado(${materia.id}, 'aprobada')"` : 'disabled'} 
-                        class="flex-1 py-2.5 ${disponible ? 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20 hover:shadow-xl hover:-translate-y-0.5 active:scale-95 cursor-pointer' : 'bg-gray-200 cursor-not-allowed opacity-50'} text-white rounded-xl text-xs font-bold transition-all shadow-lg">
+                        class="flex-1 py-2.5 ${disponible ? 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20 hover:shadow-xl hover:-translate-y-0.5 active:scale-95 cursor-pointer text-white' : 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'} rounded-xl text-xs font-bold transition-all shadow-lg">
                         ${disponible ? 'APROBAR MATERIA' : 'PRELACIÓN PENDIENTE'}
                     </button>
                 </div>`;
