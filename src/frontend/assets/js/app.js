@@ -1,5 +1,8 @@
-// Eliminamos los imports estáticos que no funcionan en el navegador con Prisma
-import { getMateriasPorSemestre, isMateriaDisponible, UC } from '../../logic_horarios.js';
+import { getMateriasPorSemestre, isMateriaDisponible, UC } from './logic_horarios.js';
+
+const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000' 
+    ? 'http://localhost:3000' 
+    : '';
 
 /**
  * ESTADO GLOBAL DE LA APLICACIÓN
@@ -15,7 +18,7 @@ const TOTAL_SEMESTERS = 9;
  */
 async function fetchPensum() {
     try {
-        const response = await fetch('http://localhost:3000/api/pensum');
+        const response = await fetch(`${API_BASE}/api/pensum`);
         if (!response.ok) throw new Error('Error al cargar datos');
         pensum = await response.json();
         console.log("Pensum cargado de DB:", pensum);
@@ -43,7 +46,7 @@ function renderSemesterTabs() {
         const btn = document.createElement('button');
         const delay = (i - startSemester) * 50;
         btn.style.animationDelay = `${delay}ms`;
-        btn.className = `flex items-center gap-4 p-1.5 pr-8 rounded-2xl border transition-all duration-300 semester-animate min-w-[180px] ${
+        btn.className = `flex items-center gap-4 p-1.5 pr-8 rounded-2xl border transition-all duration-300 semester-animate min-w-[160px] ${
             isActive 
             ? 'bg-indigo-900 border-indigo-900 shadow-[0_4px_15px_-3px_rgba(30,27,75,0.3)] scale-[1.03] z-10 cursor-default' 
             : 'bg-white border-white/50 backdrop-blur-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:border-white hover:bg-white/80 hover:shadow-md hover:-translate-y-0.5 hover:scale-105 active:scale-95 cursor-pointer'
@@ -183,7 +186,7 @@ window.cambiarEstado = async (id, nuevoEstado) => {
     }
 
     try {
-        const response = await fetch('http://localhost:3000/api/progreso', {
+        const response = await fetch(`${API_BASE}/api/progreso`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id_materia: id, estado: nuevoEstado })
@@ -203,7 +206,7 @@ window.cambiarEstado = async (id, nuevoEstado) => {
 window.resetProgress = async () => {
     if (confirm('¿Estás seguro de que deseas borrar todo tu avance académico? Esta acción no se puede deshacer.')) {
         try {
-            const response = await fetch('http://localhost:3000/api/progreso/reset', {
+            const response = await fetch(`${API_BASE}/api/progreso/reset`, {
                 method: 'POST'
             });
             if (!response.ok) throw new Error('Error al reiniciar progreso');

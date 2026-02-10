@@ -8,7 +8,9 @@
     "tailwindcss": "^4.1.18"
   },
   "scripts": {
-    "dev": "tailwindcss -i ./src/input.css -o ./output.css --watch",
+    "dev": "node server.js",
+    "build:css": "node node_modules/@tailwindcss/cli/dist/index.mjs -i ./src/input.css -o ./src/frontend/assets/css/output.css",
+    "watch:css": "node node_modules/@tailwindcss/cli/dist/index.mjs -i ./src/input.css -o ./src/frontend/assets/css/output.css --watch",
     "db:seed": "node scripts/export-data.js"
   },
   "prisma": {
