@@ -154,24 +154,24 @@ function renderSubjects() {
  */
 function updateDashboard() {
     const compUC = UC(pensum, 'aprobada');
-    const cursoUC = UC(pensum, 'en curso');
     const totalUC = 240;
     const progress = (compUC / totalUC) * 100;
 
-    const elComp = document.getElementById('comp-uc-total');
-    const elCurso = document.getElementById('curso-uc-total');
-    const elElegir = document.getElementById('elegir-uc-total');
     const elPercent = document.getElementById('progress-percent');
-    const elBar = document.getElementById('progress-bar');
-    const elText = document.getElementById('progress-text');
+    const elCircle = document.getElementById('progress-circle');
+    const elUC = document.getElementById('progress-text-uc');
+    const elBarLinear = document.getElementById('progress-bar-linear');
 
-    if (elComp) elComp.innerText = compUC;
-    if (elCurso) elCurso.innerText = cursoUC;
-    if (elElegir) elElegir.innerText = totalUC - compUC - cursoUC;
-    
     if (elPercent) elPercent.innerText = `${Math.round(progress)}%`;
-    if (elBar) elBar.style.width = `${progress}%`;
-    if (elText) elText.innerText = `${compUC} de ${totalUC} UC alcanzadas satisfactoriamente`;
+    
+    if (elCircle) {
+        const circumference = 2 * Math.PI * 42;
+        const offset = circumference - (progress / 100) * circumference;
+        elCircle.style.strokeDashoffset = offset;
+    }
+
+    if (elUC) elUC.innerText = `${compUC} de ${totalUC} UC`;
+    if (elBarLinear) elBarLinear.style.width = `${progress}%`;
 }
 
 /**
