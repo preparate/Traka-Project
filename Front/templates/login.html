@@ -7,6 +7,12 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+        button, [onclick] { cursor: pointer; }
+        button:disabled, [disabled] { cursor: not-allowed !important; }
+    </style>
+
     <link rel="icon" type="image/png" href="/images/favicon.png">
 </head>
 
@@ -16,7 +22,7 @@
 
     <header class="pt-8">
     <div class="top-8 left-10 absolute">
-    <span class="text-2xl font-extrabold tracking-tight text-gray-800">
+    <span class="text-xl font-bold tracking-tight text-gray-800">
       Simulador Academico <span class="text-blue-600">UNEFA</span>
     </span>
     </div>
@@ -45,8 +51,9 @@
       <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2 px-4 cursor-pointer rounded-lg hover:bg-blue-700 transition duration-300">
         Iniciar Sesión
       </button>
+      
 
-      <span class="block text-center text-indigo-500 hover:underline transition-transform cursor-pointer mt-4">Recuperar contraseña </span>
+      <span class="block text-center text-indigo-500 hover:underline cursor-pointer mt-4">Recuperar contraseña </span>
     </form>
 
   </div>
