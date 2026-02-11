@@ -17,12 +17,7 @@
     "seed": "node prisma/seed.js"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "@types/node": "^25.2.2",
     "prisma": "6.4.1"
-=======
-    "@types/node": "^25.2.1",
-    "prisma": "^6.4.1"
->>>>>>> main
   }
 }
