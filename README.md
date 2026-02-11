@@ -1,80 +1,83 @@
-# Traka-Project - Simulador Académico Dinámico
+# 🚀 Traka-Project - Simulador Académico UNEFA
 
-Simulador de progreso académico para estudiantes, que permite visualizar materias por semestre, gestionar aprobaciones y validar prelaciones en tiempo real con persistencia en base de datos.
+Simulador dinámico de progreso académico diseñado para estudiantes de Ingeniería de Sistemas. Permite visualizar la malla curricular, gestionar aprobaciones de materias y validar automáticamente las prelaciones en tiempo real con persistencia en base de datos.
 
-## 🚀 Arquitectura del Proyecto
+## 📂 Organización del Proyecto (Arquitectura)
 
-El proyecto ha evolucionado de una aplicación estática a una arquitectura **Client-Server** moderna con persistencia de datos:
+El proyecto sigue una estructura modular separando claramente el **Backend** y el **Frontend** dentro de la carpeta `/src`:
 
-- **Frontend**: Interfaz moderna construida con HTML5, Tailwind CSS y JavaScript asíncrono.
-- **Backend**: Servidor API construido con **Express.js**.
-- **Base de Datos**: PostgreSQL gestionado a través de **Prisma ORM**.
+```text
+/src
+├── /backend            # Lógica del Servidor (API Express)
+│   ├── /config         # Conexión Prisma y scripts de Semilla
+│   ├── /controllers    # Lógica de negocio (Pensum y Progreso)
+│   ├── /routes         # Definición de rutas API
+│   └── app.js          # Configuración principal de Express
+├── /frontend           # Interfaz de Usuario (UI)
+│   ├── /public         # Estructura HTML (plataforma.html, login.html)
+│   └── /assets         # Recursos (CSS compilado, Lógica JS del cliente)
+server.js               # Punto de entrada para arrancar el servidor
+```
 
-## 🛠️ Tecnologías Usadas
+## 🛠️ Tecnologías y Requisitos
 
-- **Servidor**: Node.js, Express.js.
+- **Backend**: Node.js v24+, Express.js.
 - **Base de Datos**: PostgreSQL.
-- **ORM**: Prisma v6.4.1.
-- **Frontend**: HTML5, Vanilla JS, Tailwind CSS.
-- **Seguridad**: CORS, Dotenv.
+- **ORM**: Prisma (v6.4.1).
+- **Frontend**: HTML5, Vanilla JavaScript, Tailwind CSS (v4).
 
-## 📦 Instalación y Configuración
+## 📦 Instalación y Setup Inicial
 
-1. **Clonar el repositorio**:
+1. **Clonar e instalar**:
 
    ```bash
    git clone <url-del-repositorio>
    cd Traka-Project
-   ```
-
-2. **Instalar dependencias**:
-
-   ```bash
    npm install
    ```
 
-3. **Configurar variables de entorno**:
-   Crea un archivo `.env` en la raíz con tu URL de PostgreSQL:
+2. **Configurar Base de Datos**:
+   Crea un archivo `.env` en la raíz con la URL de tu base de datos:
 
    ```env
    DATABASE_URL="postgresql://USUARIO:PASSWORD@localhost:5432/TU_DB?schema=public"
    ```
 
-4. **Generar el cliente de Prisma**:
+3. **Preparar Prisma**:
    ```bash
    npx prisma generate
+   npx prisma db push  # Crea las tablas si no existen
    ```
 
-## 🏃 Lanzamiento
+## 🏃 Scripts de Desarrollo
 
-Para iniciar el sistema completo:
+He configurado varios comandos en `package.json` para facilitar el trabajo:
 
-1. **Iniciar el Servidor API**:
+| Comando             | Descripción                                                                       |
+| :------------------ | :-------------------------------------------------------------------------------- |
+| `npm run dev`       | Inicia el servidor de Node (`server.js`) en `http://localhost:3000`.              |
+| `npm run build:css` | Compila manualmente el CSS de Tailwind.                                           |
+| `npm run watch:css` | Modo "observador" de Tailwind para actualizar estilos en vivo mientras programas. |
+| `npm run db:seed`   | **Exporta** tus datos locales de la DB a archivos JSON en `prisma/seed_data/`.    |
 
+## 👥 Compartiendo Datos (Seed)
+
+Para que todos los integrantes del equipo trabajen con el mismo pensum:
+
+1. **Para exportar**: Ejecuta `npm run db:seed`. Sube los cambios de `prisma/seed_data/` al repositorio.
+2. **Para importar**: Tus compañeros deben ejecutar:
    ```bash
-   node server.js
+   npx prisma db seed
    ```
 
-   _El servidor correrá en `http://localhost:3000`._
+## 📡 API Endpoints
 
-2. **Abrir el Frontend**:
-   Abre el archivo `Front/templates/plataforma.html` en tu navegador favorito.
-
-## 📡 Endpoints de la API
-
-| Método | Ruta            | Descripción                                                   |
-| :----- | :-------------- | :------------------------------------------------------------ |
-| `GET`  | `/api/pensum`   | Obtiene todas las materias unidas al progreso del estudiante. |
-| `POST` | `/api/progreso` | Actualiza o crea el estado de una materia para un estudiante. |
-
-## 👥 Equipo Original
-
-- **Responsable del informe**: Dayana
-- **Responsable del JSON (Datos)**: Pablo
-- **Diseñador de Interfaz**: Angel
-- **Lógica de Prelación**: Damico
-- **Programador de Horarios**: Gabriela
+| Método | Ruta                  | Descripción                                                   |
+| :----- | :-------------------- | :------------------------------------------------------------ |
+| `GET`  | `/api/pensum`         | Retorna todas las materias unidas al progreso del estudiante. |
+| `POST` | `/api/progreso`       | Actualiza o crea el estado de una materia.                    |
+| `POST` | `/api/progreso/reset` | Borra todo el progreso académico del estudiante.              |
 
 ---
 
-_Actualizado con persistencia dinámica mediante Prisma y Express._
+_Proyecto Traka - Desarrollado para la optimización académica en la UNEFA._
