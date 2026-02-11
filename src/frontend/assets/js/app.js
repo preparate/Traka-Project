@@ -227,8 +227,38 @@ function renderAll() {
     updateDashboard();
 }
 
-// Inicialización asíncrona
+/**
+ * CARGAR PERFIL DE USUARIO (Desde localStorage)
+ */
+function loadUserProfile() {
+    const nombre = localStorage.getItem('usuario_nombre');
+    const apellido = localStorage.getItem('usuario_apellido') || "";
+    const cedula = localStorage.getItem('usuario_cedula') || "00.000.000";
+
+    // Referencias a los IDs del HTML
+    const userNameElement = document.getElementById('user-name');
+    const userCedulaElement = document.getElementById('user-cedula');
+    const userInitialsElement = document.getElementById('user-initials');
+
+    if (nombre) {
+        if (userNameElement) userNameElement.textContent = `${nombre} ${apellido}`;
+        if (userCedulaElement) userCedulaElement.textContent = `V-${cedula}`;
+        
+        // Generar iniciales (Ej: Juan Perez -> JP)
+        const iniciales = (nombre.charAt(0) + (apellido.charAt(0) || "")).toUpperCase();
+        if (userInitialsElement) userInitialsElement.textContent = iniciales;
+        
+        console.log("Perfil de usuario cargado.");
+    } else {
+        // Si no hay nombre en el storage, es que no pasó por el login
+        console.warn("Usuario no autenticado, redirigiendo...");
+        window.location.href = "login.html";
+    }
+}
+
+// ESTA ES LA INICIALIZACIÓN QUE BUSCABAS:
 document.addEventListener('DOMContentLoaded', async () => {
-    await fetchPensum();
-    renderAll();
+    loadUserProfile(); // Carga el nombre y cédula primero
+    await fetchPensum(); // Luego pide las materias al servidor
+    renderAll();        // Finalmente dibuja todo en pantalla
 });
