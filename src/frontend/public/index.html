@@ -5,7 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <link href="../assets/css/output.css" rel="stylesheet">
-   <link rel="icon" type="image/png" href="../images/favicon.png">
+   <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+
+        button,
+        [onclick] {
+            cursor: pointer;
+        }
+
+        button:disabled,
+        [disabled] {
+            cursor: not-allowed !important;
+        }
+
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.8s ease-in-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+    <link rel="icon" type="image/png" href="./images/favicon.png">
   </head>
 
   <body>
@@ -46,7 +68,7 @@
         </div>
       </section>
 
-      <section class="flex flex-col shadow-2xl bg-gray-50 py-6 px-12 gap-8">
+      <section class="flex flex-col shadow-black shadow-2xl bg-white p-15 gap-8">
         <div class=" py-8 p-8">
           <h2 class="text-2xl font-black text-slate-800 tracking-tight leading-none mb-2 ">Características Principales</h2>
           <p class="text-gray-500 text-xs">
@@ -87,8 +109,8 @@
         </div>
       </section>
 
-      <section class="flex flex-row bg-white py-8 items-center justify-center">
-        <div class=" bg-gray-100 flex flex-col grow gap-4 p-10">
+      <section class=" bg-gray-100 flex flex-row py-8 items-center justify-center">
+        <div class=" flex flex-col gap-4 p-10">
           <h2 class="text-3xl font-black text-slate-800 tracking-tight leading-none mb-2">Cómo Funciona La Planificación</h2>
           <p class="text-gray-500">
             Tres simples pasos para tener claridad absoluta sobre tu carrera
@@ -102,75 +124,98 @@
           </div>
         </div>
 
-<div class="flex flex-col space-y-10 bg-amber-400">
-  <ul class="list-disc list-inside text-white marker:text-blue-500">
-  <li>1</li>
-  <li>2</li>
-</ul>
+
 </div>
-        <div class="flex flex-col gap-4 p-10">
-          <div>
-            <div>
-              <h3>Selecciona Tu Semestre</h3>
-              <p>
-                Define tu punto de partida eligiendo el nivel actual de tu plan
-                de estudios oficial de la universidad.
-              </p>
-            </div>
-          </div>
-          <div>
-            <div>
-              <h3>Marca Materias Aprobadas</h3>
-              <p>
-                Actualiza tu historial académico. El sistema acumulará
-                automáticamente tus créditos totales y tu situación académica
-              </p>
-            </div>
-          </div>
-          <div>
-      
-            <div>
-              <h3>Visualiza Tu Próxima Matrícula</h3>
-              <p>
-                Descubre instantáneamente que materias tienes disponibles para
-                inscribir en el próximo semeste basado en tus prerrequisitos
-              </p>
-            </div>
-          </div>
-        </div class="flex justify-center gap-8">
+
+
+   <div class="flex flex-col gap-10 p-10 relative">
+  
+  <div class="relative top-14 bottom-14 w-0.5 bg-gray-300 "></div>
+
+  <div class="flex items-start gap-6 relative z-10">
+    <div class="flex-shrink-0 w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold shadow-md">
+      1
+    </div>
+    <div class="flex flex-col">
+      <h3 class="text-xl font-bold text-slate-800">Selecciona Tu Semestre</h3>
+      <p class="text-gray-500 leading-tight">
+        Define tu punto de partida eligiendo el nivel actual de tu plan
+        de estudios oficial de la universidad.
+      </p>
+    </div>
+  </div>
+
+  <div class="flex items-start gap-6 relative z-10">
+    <div class="flex-shrink-0 w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold shadow-md">
+      2
+    </div>
+    <div class="flex flex-col">
+      <h3 class="text-xl font-bold text-slate-800">Marca Materias Aprobadas</h3>
+      <p class="text-gray-500 leading-tight">
+        Actualiza tu historial académico. El sistema acumulará
+        automáticamente tus créditos totales y tu situación académica.
+      </p>
+    </div>
+  </div>
+
+  <div class="flex items-start gap-6 relative z-10">
+    <div class="flex-shrink-0 w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold shadow-md">
+      3
+    </div>
+    <div class="flex flex-col">
+      <h3 class="text-xl font-bold text-slate-800">Visualiza Tu Próxima Matrícula</h3>
+      <p class="text-gray-500 leading-tight">
+        Descubre instantáneamente que materias tienes disponibles para
+        inscribir en el próximo semestre basado en tus prerrequisitos.
+      </p>
+    </div>
+  </div>
+</div>
       </section>
 
-      <section>
-        <div>
-          <h2>¿Listo Para Tomar El Control De Tu Carrera?</h2>
-          <p>
+      <section class=" bg-gray-100 px-10 pb-10">
+        <div class="text-center flex flex-col items-center justify-center  p-7  gap-8  bg-indigo-600 text-white rounded-2xl">
+          <h1 class="text-3xl font-black py-5 tracking-tight leading-none mb-2">¿Listo Para Tomar El Control De Tu Carrera?</h1>
+          <p class="text-gray-200">
             Únete a cientos de estudiantes de Ingeniería de Sistemas que ya
             están planificando su éxito académico
           </p>
-          <button>Empieza Gratis Hoy</button>
+          <button class="my-5 bg-white text-indigo-600 font-bold py-3 px-6 rounded-lg shadow-md hover:bg-gray-100 transition-colors">Empieza Gratis Hoy</button>
         </div>
       </section>
     </main>
 
-    <footer>
-      <div>
-        <h1>Simulador Academico UNEFA</h1>
-        <p>
+    <footer class="flex flex-col bg-white shadow-2xl justify-between  py-6 ">
+      <section class="shadow-lg flex flex-row justify-between items-center px-6">
+      <div class="flex flex-col gap-5 mb-5">
+        <div class="flex items-center gap-3">
+      <div class="bg-indigo-900 p-2 rounded-lg">
+                <svg class="size-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            </div>
+      <div class=" py-4">
+        <h1 class="text-lg font-bold text-indigo-950">Simulador Academico UNEFA</h1>
+      </div>
+      </div>
+        <p class="text-gray-500 ">
           Aviso Legal: Esta es una herramienta de simulación independiente y no
           constituye un sistema oficial de registro de ninguna universidad. Las
           proyecciones son informativas.
         </p>
       </div>
 
-      <div>
-        <p>&copy; Planificador de Pensum</p>
-      </div>
-
-      <div>
+      <div class="flex flex-row gap-5 text-gray-500">
         <button>Privacidad</button>
         <button>Términos</button>
         <button>Contacto</button>
       </div>
+
+      </section>
+
+      <div class="flex text-gray-500 p-5">
+        <p>&copy; Planificador de Pensum</p>
+      </div>
+
+      
 
       <div>
         <img/>
