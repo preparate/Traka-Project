@@ -10,21 +10,10 @@
     --color-red-50: oklch(97.1% 0.013 17.38);
     --color-red-100: oklch(93.6% 0.032 17.717);
     --color-red-200: oklch(88.5% 0.062 18.334);
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
     --color-red-400: oklch(70.4% 0.191 22.216);
     --color-red-500: oklch(63.7% 0.237 25.331);
     --color-red-600: oklch(57.7% 0.245 27.325);
     --color-amber-500: oklch(76.9% 0.188 70.08);
-<<<<<<< Updated upstream
-=======
-=======
-    --color-red-500: oklch(63.7% 0.237 25.331);
-    --color-red-600: oklch(57.7% 0.245 27.325);
->>>>>>> main
->>>>>>> Stashed changes
     --color-green-300: oklch(87.1% 0.15 154.449);
     --color-emerald-50: oklch(97.9% 0.021 166.113);
     --color-emerald-100: oklch(95% 0.052 163.051);
@@ -85,14 +74,7 @@
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
-<<<<<<< Updated upstream
     --font-weight-extrabold: 800;
-=======
-<<<<<<< HEAD
-    --font-weight-extrabold: 800;
-=======
->>>>>>> main
->>>>>>> Stashed changes
     --font-weight-black: 900;
     --tracking-tight: -0.025em;
     --tracking-wide: 0.025em;
@@ -104,13 +86,9 @@
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
-<<<<<<< Updated upstream
-    --ease-out: cubic-bezier(0, 0, 0.2, 1);
-=======
     --radius-3xl: 1.5rem;
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
->>>>>>> Stashed changes
     --blur-sm: 8px;
     --blur-md: 12px;
     --default-transition-duration: 150ms;
@@ -268,10 +246,6 @@
   }
 }
 @layer utilities {
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-=======
   .absolute {
     position: absolute;
   }
@@ -281,8 +255,6 @@
   .inset-0 {
     inset: calc(var(--spacing) * 0);
   }
->>>>>>> main
->>>>>>> Stashed changes
   .top-8 {
     top: calc(var(--spacing) * 8);
   }
@@ -313,15 +285,9 @@
   .mx-auto {
     margin-inline: auto;
   }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-=======
   .mt-1 {
     margin-top: calc(var(--spacing) * 1);
   }
->>>>>>> main
->>>>>>> Stashed changes
   .mt-4 {
     margin-top: calc(var(--spacing) * 4);
   }
@@ -358,13 +324,10 @@
   .table {
     display: table;
   }
-<<<<<<< Updated upstream
   .size-3 {
     width: calc(var(--spacing) * 3);
     height: calc(var(--spacing) * 3);
   }
-=======
->>>>>>> Stashed changes
   .size-3\.5 {
     width: calc(var(--spacing) * 3.5);
     height: calc(var(--spacing) * 3.5);
@@ -389,24 +352,17 @@
     width: calc(var(--spacing) * 11);
     height: calc(var(--spacing) * 11);
   }
-<<<<<<< Updated upstream
+  .h-1 {
+    height: calc(var(--spacing) * 1);
+  }
   .h-2 {
     height: calc(var(--spacing) * 2);
-=======
-<<<<<<< HEAD
-  .h-2 {
-    height: calc(var(--spacing) * 2);
-=======
-  .h-1\.5 {
-    height: calc(var(--spacing) * 1.5);
   }
   .h-5 {
     height: calc(var(--spacing) * 5);
   }
   .h-44 {
     height: calc(var(--spacing) * 44);
->>>>>>> main
->>>>>>> Stashed changes
   }
   .h-full {
     height: 100%;
@@ -423,18 +379,12 @@
   .min-h-screen {
     min-height: 100vh;
   }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-=======
   .w-5 {
     width: calc(var(--spacing) * 5);
   }
   .w-44 {
     width: calc(var(--spacing) * 44);
   }
->>>>>>> main
->>>>>>> Stashed changes
   .w-80 {
     width: calc(var(--spacing) * 80);
   }
@@ -447,27 +397,15 @@
   .max-w-md {
     max-width: var(--container-md);
   }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
   .min-w-\[180px\] {
     min-width: 180px;
   }
   .min-w-screen {
     min-width: 100vw;
-<<<<<<< Updated upstream
-=======
-=======
-  .min-w-\[160px\] {
-    min-width: 160px;
->>>>>>> main
->>>>>>> Stashed changes
   }
   .flex-1 {
     flex: 1;
   }
-<<<<<<< Updated upstream
   .flex-shrink {
     flex-shrink: 1;
   }
@@ -483,14 +421,6 @@
   .border-collapse {
     border-collapse: collapse;
   }
-=======
-  .shrink-0 {
-    flex-shrink: 0;
-  }
-  .grow {
-    flex-grow: 1;
-  }
->>>>>>> Stashed changes
   .scale-\[1\.03\] {
     scale: 1.03;
   }
@@ -506,12 +436,9 @@
   .cursor-pointer {
     cursor: pointer;
   }
-<<<<<<< Updated upstream
   .resize {
     resize: both;
   }
-=======
->>>>>>> Stashed changes
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
@@ -533,12 +460,9 @@
   .justify-center {
     justify-content: center;
   }
-<<<<<<< Updated upstream
   .gap-1 {
     gap: calc(var(--spacing) * 1);
   }
-=======
->>>>>>> Stashed changes
   .gap-1\.5 {
     gap: calc(var(--spacing) * 1.5);
   }
@@ -560,10 +484,6 @@
   .gap-10 {
     gap: calc(var(--spacing) * 10);
   }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
   .space-y-4 {
     :where(& > :not(:last-child)) {
       --tw-space-y-reverse: 0;
@@ -585,11 +505,6 @@
       border-color: var(--color-gray-50);
     }
   }
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> main
->>>>>>> Stashed changes
   .truncate {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -607,15 +522,9 @@
   .rounded-2xl {
     border-radius: var(--radius-2xl);
   }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-=======
   .rounded-3xl {
     border-radius: var(--radius-3xl);
   }
->>>>>>> main
->>>>>>> Stashed changes
   .rounded-full {
     border-radius: calc(infinity * 1px);
   }
@@ -645,18 +554,9 @@
     border-left-style: var(--tw-border-style);
     border-left-width: 4px;
   }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-=======
-  .border-blue-50\/50 {
-    border-color: color-mix(in srgb, oklch(97% 0.014 254.604) 50%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      border-color: color-mix(in oklab, var(--color-blue-50) 50%, transparent);
-    }
+  .border-blue-50 {
+    border-color: var(--color-blue-50);
   }
->>>>>>> main
->>>>>>> Stashed changes
   .border-blue-200 {
     border-color: var(--color-blue-200);
   }
@@ -693,27 +593,15 @@
   .border-l-emerald-500 {
     border-left-color: var(--color-emerald-500);
   }
-<<<<<<< Updated upstream
   .border-l-slate-300 {
     border-left-color: var(--color-slate-300);
   }
-=======
->>>>>>> Stashed changes
   .border-l-slate-300\/50 {
     border-left-color: color-mix(in srgb, oklch(86.9% 0.022 252.894) 50%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       border-left-color: color-mix(in oklab, var(--color-slate-300) 50%, transparent);
     }
   }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-=======
-  .bg-\[\#F8FAFC\] {
-    background-color: #F8FAFC;
-  }
->>>>>>> main
->>>>>>> Stashed changes
   .bg-\[\#F9FAFC\] {
     background-color: #F9FAFC;
   }
@@ -732,10 +620,6 @@
   .bg-gray-50 {
     background-color: var(--color-gray-50);
   }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
   .bg-gray-50\/50 {
     background-color: color-mix(in srgb, oklch(98.5% 0.002 247.839) 50%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -745,11 +629,6 @@
   .bg-indigo-50 {
     background-color: var(--color-indigo-50);
   }
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> main
->>>>>>> Stashed changes
   .bg-indigo-500 {
     background-color: var(--color-indigo-500);
   }
@@ -759,25 +638,17 @@
   .bg-indigo-900 {
     background-color: var(--color-indigo-900);
   }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
   .bg-indigo-900\/10 {
     background-color: color-mix(in srgb, oklch(35.9% 0.144 278.697) 10%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-indigo-900) 10%, transparent);
     }
-<<<<<<< Updated upstream
+  }
+  .bg-indigo-950 {
+    background-color: var(--color-indigo-950);
   }
   .bg-red-50 {
     background-color: var(--color-red-50);
-=======
-=======
-  .bg-indigo-950 {
-    background-color: var(--color-indigo-950);
->>>>>>> main
->>>>>>> Stashed changes
   }
   .bg-red-50\/80 {
     background-color: color-mix(in srgb, oklch(97.1% 0.013 17.38) 80%, transparent);
@@ -791,15 +662,9 @@
   .bg-slate-100 {
     background-color: var(--color-slate-100);
   }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-=======
   .bg-slate-200 {
     background-color: var(--color-slate-200);
   }
->>>>>>> main
->>>>>>> Stashed changes
   .bg-white {
     background-color: var(--color-white);
   }
@@ -852,33 +717,14 @@
     --tw-gradient-to: var(--color-indigo-300);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
-<<<<<<< Updated upstream
   .p-1 {
     padding: calc(var(--spacing) * 1);
   }
-=======
->>>>>>> Stashed changes
   .p-1\.5 {
     padding: calc(var(--spacing) * 1.5);
   }
   .p-2 {
     padding: calc(var(--spacing) * 2);
-  }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
-  .p-6 {
-    padding: calc(var(--spacing) * 6);
-  }
-  .p-8 {
-    padding: calc(var(--spacing) * 8);
-  }
-<<<<<<< Updated upstream
-=======
-=======
-  .p-2\.5 {
-    padding: calc(var(--spacing) * 2.5);
   }
   .p-6 {
     padding: calc(var(--spacing) * 6);
@@ -892,8 +738,6 @@
   .p-10 {
     padding: calc(var(--spacing) * 10);
   }
->>>>>>> main
->>>>>>> Stashed changes
   .p-12 {
     padding: calc(var(--spacing) * 12);
   }
@@ -912,18 +756,9 @@
   .px-6 {
     padding-inline: calc(var(--spacing) * 6);
   }
-<<<<<<< Updated upstream
   .px-8 {
     padding-inline: calc(var(--spacing) * 8);
   }
-=======
-<<<<<<< HEAD
-  .px-8 {
-    padding-inline: calc(var(--spacing) * 8);
-  }
-=======
->>>>>>> main
->>>>>>> Stashed changes
   .px-12 {
     padding-inline: calc(var(--spacing) * 12);
   }
@@ -1049,18 +884,9 @@
     --tw-tracking: var(--tracking-widest);
     letter-spacing: var(--tracking-widest);
   }
-<<<<<<< Updated upstream
   .text-blue-600 {
     color: var(--color-blue-600);
   }
-=======
-<<<<<<< HEAD
-  .text-blue-600 {
-    color: var(--color-blue-600);
-  }
-=======
->>>>>>> main
->>>>>>> Stashed changes
   .text-blue-800 {
     color: var(--color-blue-800);
   }
@@ -1118,12 +944,9 @@
   .uppercase {
     text-transform: uppercase;
   }
-<<<<<<< Updated upstream
   .underline {
     text-decoration-line: underline;
   }
-=======
->>>>>>> Stashed changes
   .opacity-60 {
     opacity: 60%;
   }
@@ -1154,62 +977,47 @@
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
-<<<<<<< Updated upstream
   .shadow-emerald-500 {
     --tw-shadow-color: oklch(69.6% 0.17 162.48);
     @supports (color: color-mix(in lab, red, red)) {
       --tw-shadow-color: color-mix(in oklab, var(--color-emerald-500) var(--tw-shadow-alpha), transparent);
     }
   }
-=======
->>>>>>> Stashed changes
   .shadow-emerald-500\/20 {
     --tw-shadow-color: color-mix(in srgb, oklch(69.6% 0.17 162.48) 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-emerald-500) 20%, transparent) var(--tw-shadow-alpha), transparent);
     }
   }
-<<<<<<< Updated upstream
   .shadow-indigo-500 {
     --tw-shadow-color: oklch(58.5% 0.233 277.117);
     @supports (color: color-mix(in lab, red, red)) {
       --tw-shadow-color: color-mix(in oklab, var(--color-indigo-500) var(--tw-shadow-alpha), transparent);
     }
   }
-=======
->>>>>>> Stashed changes
   .shadow-indigo-500\/20 {
     --tw-shadow-color: color-mix(in srgb, oklch(58.5% 0.233 277.117) 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-indigo-500) 20%, transparent) var(--tw-shadow-alpha), transparent);
     }
   }
-<<<<<<< Updated upstream
+  .shadow-indigo-950 {
+    --tw-shadow-color: oklch(25.7% 0.09 281.288);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-shadow-color: color-mix(in oklab, var(--color-indigo-950) var(--tw-shadow-alpha), transparent);
+    }
+  }
   .outline {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
   }
-=======
-<<<<<<< HEAD
-=======
-  .shadow-indigo-950\/20 {
-    --tw-shadow-color: color-mix(in srgb, oklch(25.7% 0.09 281.288) 20%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-indigo-950) 20%, transparent) var(--tw-shadow-alpha), transparent);
-    }
-  }
->>>>>>> main
->>>>>>> Stashed changes
   .grayscale {
     --tw-grayscale: grayscale(100%);
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
-<<<<<<< Updated upstream
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
-=======
->>>>>>> Stashed changes
   .backdrop-blur-md {
     --tw-backdrop-blur: blur(var(--blur-md));
     -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
@@ -1252,10 +1060,6 @@
     --tw-duration: 500ms;
     transition-duration: 500ms;
   }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-=======
   .duration-1000 {
     --tw-duration: 1000ms;
     transition-duration: 1000ms;
@@ -1264,8 +1068,6 @@
     --tw-ease: var(--ease-in-out);
     transition-timing-function: var(--ease-in-out);
   }
->>>>>>> main
->>>>>>> Stashed changes
   .ease-out {
     --tw-ease: var(--ease-out);
     transition-timing-function: var(--ease-out);
@@ -1523,10 +1325,6 @@
   syntax: "*";
   inherits: false;
 }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
 @property --tw-space-y-reverse {
   syntax: "*";
   inherits: false;
@@ -1537,11 +1335,6 @@
   inherits: false;
   initial-value: 0;
 }
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> main
->>>>>>> Stashed changes
 @property --tw-border-style {
   syntax: "*";
   inherits: false;
@@ -1666,14 +1459,11 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
-<<<<<<< Updated upstream
 @property --tw-outline-style {
   syntax: "*";
   inherits: false;
   initial-value: solid;
 }
-=======
->>>>>>> Stashed changes
 @property --tw-blur {
   syntax: "*";
   inherits: false;
@@ -1809,16 +1599,8 @@
       --tw-rotate-z: initial;
       --tw-skew-x: initial;
       --tw-skew-y: initial;
-<<<<<<< Updated upstream
       --tw-space-y-reverse: 0;
       --tw-divide-y-reverse: 0;
-=======
-<<<<<<< HEAD
-      --tw-space-y-reverse: 0;
-      --tw-divide-y-reverse: 0;
-=======
->>>>>>> main
->>>>>>> Stashed changes
       --tw-border-style: solid;
       --tw-gradient-position: initial;
       --tw-gradient-from: #0000;
@@ -1846,10 +1628,7 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
-<<<<<<< Updated upstream
       --tw-outline-style: solid;
-=======
->>>>>>> Stashed changes
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;
