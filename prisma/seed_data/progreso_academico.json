@@ -1,1 +1,121 @@
-[]
+[
+  {
+    "id_estudiante": 1,
+    "id_materia": 101,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 102,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 103,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 104,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 108,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 107,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 106,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 105,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 402,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 201,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 205,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 206,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 202,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 203,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 207,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 204,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  },
+  {
+    "id_estudiante": 1,
+    "id_materia": 208,
+    "estado": "aprobada",
+    "nota": null,
+    "fecha_aprobacion": null
+  }
+]
