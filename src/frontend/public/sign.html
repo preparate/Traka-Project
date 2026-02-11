@@ -6,16 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../assets/css/output.css" rel="stylesheet" />
 
-    <title>Iniciar Sesión | Simulador Académico UNEFA</title>
+    <title>Crear Cuenta | Simulador Académico UNEFA</title>
 </head>
 
-<body
-    class="bg-slate-100 text-slate-700 font-sans h-screen flex flex-col relative overflow-hidden">
+<body class="bg-slate-100 text-slate-700 font-sans h-screen flex flex-col relative overflow-hidden">
 
-    <!-- 
-      DECORACIÓN DE FONDO: Iconos flotantes 
-      Estos SVGs están dispersos y con baja opacidad para crear textura visual 
-    -->
+    <!-- DECORACIÓN DE FONDO: Iconos flotantes -->
     <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
         <!-- Birrete Académico (Top Izquierda) -->
         <svg class="absolute -top-10 -left-10 w-64 h-64 text-slate-200/50 transform -rotate-12" fill="currentColor"
@@ -82,24 +78,17 @@
                     <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-indigo-800 rounded-full blur-3xl opacity-50">
                     </div>
                     <div class="absolute -left-20 top-20 w-60 h-60 bg-blue-900 rounded-full blur-3xl opacity-50"></div>
-                    <!-- Curvas decorativas sutiles SVG de fondo -->
-                    <svg class="absolute bottom-0 left-0 w-full h-1/2 text-indigo-800/10" viewBox="0 0 1440 320"
-                        preserveAspectRatio="none">
-                        <path fill="currentColor"
-                            d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-                        </path>
-                    </svg>
                 </div>
 
                 <!-- Contenido -->
                 <div class="relative z-10 mt-16">
                     <h2 class="text-4xl font-black text-white leading-tight mb-6">
-                        Gestión <br>
-                        Académica <br>
-                        Simplificada
+                        Únete a la <br>
+                        Comunidad
                     </h2>
                     <p class="text-indigo-200 text-lg font-medium leading-relaxed max-w-xs">
-                        Accede a tu historial, malla curricular y plan de estudios en un solo lugar.
+                        Accede a tu plataforma de gestión académica oficial y mantén el control total de tu progreso
+                        estudiantil en un solo lugar.
                     </p>
                 </div>
 
@@ -115,52 +104,85 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-white font-bold text-sm">Acceso Seguro</p>
-                            <p class="text-indigo-200 text-[10px] leading-tight mt-0.5">Tus datos están protegidos bajo
-                                los protocolos de seguridad institucional.</p>
+                            <p class="text-white font-bold text-sm">Registro Seguro</p>
+                            <p class="text-indigo-200 text-[10px] leading-tight mt-0.5">Tu información está protegida
+                                por los protocolos de seguridad institucional de la universidad.</p>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <!-- PANEL DERECHO: Formulario Login -->
-            <div class="w-7/12 bg-white p-12 lg:p-16 flex flex-col justify-center relative">
-                <div class="w-full max-w-sm mx-auto">
-                    <div class="mb-10">
-                        <h2 class="text-3xl font-black text-slate-900 mb-2">Iniciar Sesión</h2>
-                        <p class="text-slate-500 font-medium">Ingresa tus credenciales para continuar al panel</p>
+            <!-- PANEL DERECHO: Formulario Registro -->
+            <div class="w-7/12 bg-white p-10 lg:px-16 lg:py-12 flex flex-col justify-center relative">
+                <div class="w-full max-w-md mx-auto">
+                    <div class="mb-8">
+                        <h2 class="text-3xl font-black text-slate-900 mb-2">Crear Cuenta</h2>
+                        <p class="text-slate-500 font-medium text-sm">Ingresa tus datos para comenzar tu trayectoria
+                            digital</p>
                     </div>
 
-                    <form action="#" method="POST" class="space-y-6">
-                        <!-- Input: Documento Principal -->
-                        <div class="space-y-2">
-                            <label class="block text-sm font-black text-slate-800 tracking-wide" for="documento">
-                                Documento de Identidad
+                    <form action="#" method="POST" class="space-y-4">
+                        <!-- Input: Nombres y Apellidos -->
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-black text-slate-800 tracking-wide" for="fullname">
+                                Nombres y Apellidos
                             </label>
                             <div class="relative group">
                                 <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                     <svg class="h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors"
                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
+                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
                                 </div>
-                                <input type="text" id="documento" placeholder="Ej: V-25.123.456"
-                                    class="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium">
+                                <input type="text" id="fullname" placeholder="Juan Pérez"
+                                    class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- Input: Cédula de Identidad -->
+                            <div class="space-y-1.5">
+                                <label class="block text-sm font-black text-slate-800 tracking-wide" for="cedula">
+                                    Cédula de Identidad
+                                </label>
+                                <div class="relative group">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                        <svg class="h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
+                                        </svg>
+                                    </div>
+                                    <input type="text" id="cedula" placeholder="Ej: V-25..."
+                                        class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-xs lg:text-sm">
+                                </div>
+                            </div>
+
+                            <!-- Input: Correo Institucional -->
+                            <div class="space-y-1.5">
+                                <label class="block text-sm font-black text-slate-800 tracking-wide" for="email">
+                                    Correo Institucional
+                                </label>
+                                <div class="relative group">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                        <svg class="h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                        </svg>
+                                    </div>
+                                    <input type="email" id="email" placeholder="ejemplo@unefa..."
+                                        class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-xs lg:text-sm">
+                                </div>
                             </div>
                         </div>
 
                         <!-- Input: Contraseña -->
-                        <div class="space-y-2">
-                            <div class="flex items-center justify-between">
-                                <label class="block text-sm font-black text-slate-800 tracking-wide" for="password">
-                                    Contraseña
-                                </label>
-                                <a href="#"
-                                    class="text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors hover:underline">
-                                    ¿Olvidaste tu contraseña?
-                                </a>
-                            </div>
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-black text-slate-800 tracking-wide" for="password">
+                                Contraseña
+                            </label>
                             <div class="relative group">
                                 <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                     <svg class="h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors"
@@ -170,7 +192,7 @@
                                     </svg>
                                 </div>
                                 <input type="password" id="password" placeholder="••••••••"
-                                    class="w-full pl-11 pr-12 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium tracking-widest">
+                                    class="w-full pl-11 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium tracking-widest">
 
                                 <!-- Toggle Password Visibility -->
                                 <button type="button"
@@ -185,53 +207,28 @@
                             </div>
                         </div>
 
-                        <!-- Opciones Adicionales -->
-                        <div class="flex items-center">
-                            <label class="flex items-center cursor-pointer group">
-                                <div class="relative">
-                                    <input type="checkbox" class="sr-only peer">
-                                    <div
-                                        class="block w-5 h-5 bg-white border-2 border-slate-300 rounded-md peer-checked:bg-blue-600 peer-checked:border-blue-600 transition-all">
-                                    </div>
-                                    <svg class="absolute w-3 h-3 text-white top-1 left-1 opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                                            d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <span
-                                    class="ml-2.5 text-sm font-medium text-slate-600 group-hover:text-slate-800 transition-colors">Mantener
-                                    sesión iniciada</span>
-                            </label>
-                        </div>
-
                         <!-- Botón de acción -->
-                        <button type="submit"
-                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-blue-600/30 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group cursor-pointer">
-                            <span>Ingresar al Sistema</span>
-                            <svg class="size-5 group-hover:translate-x-1 transition-transform" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </button>
+                        <div class="pt-2">
+                            <button type="submit"
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-blue-600/30 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group cursor-pointer">
+                                <span>Crear Cuenta</span>
+                                <svg class="size-5 group-hover:translate-x-1 transition-transform" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                                </svg>
+                            </button>
+                        </div>
                     </form>
 
                     <!-- Footer del formulario -->
-                    <div class="mt-10 pt-6 border-t border-slate-100 flex items-center justify-between">
-                        <p class="text-sm font-medium text-slate-500">¿Eres nuevo estudiante?</p>
-                        <a href="./sign.html"
-                            class="flex items-center gap-1.5 px-4 py-2 text-xs font-bold hover:text-blue-600 hover:border-blue-200 transition-all">
-                            <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
-                                </path>
-                            </svg>
-                            Crear una cuenta
-                        </a>
+                    <div class="mt-6 pt-4 border-t border-slate-100 text-center">
+                        <p class="text-xs font-medium text-slate-500">
+                            ¿Ya tienes una cuenta?
+                            <a href="login.html" class="text-blue-600 font-bold hover:no-underline transition-all">Iniciar
+                                Sesión</a>
+                        </p>
                     </div>
-
-
 
                 </div>
             </div>
