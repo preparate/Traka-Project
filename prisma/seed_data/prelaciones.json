@@ -1,0 +1,178 @@
+[
+  {
+    "id_materia": 201,
+    "id_prelante": 101
+  },
+  {
+    "id_materia": 202,
+    "id_prelante": 101
+  },
+  {
+    "id_materia": 202,
+    "id_prelante": 102
+  },
+  {
+    "id_materia": 203,
+    "id_prelante": 102
+  },
+  {
+    "id_materia": 205,
+    "id_prelante": 106
+  },
+  {
+    "id_materia": 206,
+    "id_prelante": 106
+  },
+  {
+    "id_materia": 207,
+    "id_prelante": 108
+  },
+  {
+    "id_materia": 301,
+    "id_prelante": 201
+  },
+  {
+    "id_materia": 302,
+    "id_prelante": 201
+  },
+  {
+    "id_materia": 302,
+    "id_prelante": 202
+  },
+  {
+    "id_materia": 303,
+    "id_prelante": 201
+  },
+  {
+    "id_materia": 304,
+    "id_prelante": 203
+  },
+  {
+    "id_materia": 306,
+    "id_prelante": 207
+  },
+  {
+    "id_materia": 401,
+    "id_prelante": 301
+  },
+  {
+    "id_materia": 403,
+    "id_prelante": 203
+  },
+  {
+    "id_materia": 404,
+    "id_prelante": 304
+  },
+  {
+    "id_materia": 405,
+    "id_prelante": 304
+  },
+  {
+    "id_materia": 406,
+    "id_prelante": 305
+  },
+  {
+    "id_materia": 407,
+    "id_prelante": 306
+  },
+  {
+    "id_materia": 501,
+    "id_prelante": 401
+  },
+  {
+    "id_materia": 502,
+    "id_prelante": 403
+  },
+  {
+    "id_materia": 503,
+    "id_prelante": 402
+  },
+  {
+    "id_materia": 504,
+    "id_prelante": 403
+  },
+  {
+    "id_materia": 505,
+    "id_prelante": 402
+  },
+  {
+    "id_materia": 506,
+    "id_prelante": 404
+  },
+  {
+    "id_materia": 508,
+    "id_prelante": 407
+  },
+  {
+    "id_materia": 601,
+    "id_prelante": 501
+  },
+  {
+    "id_materia": 602,
+    "id_prelante": 501
+  },
+  {
+    "id_materia": 602,
+    "id_prelante": 502
+  },
+  {
+    "id_materia": 603,
+    "id_prelante": 503
+  },
+  {
+    "id_materia": 604,
+    "id_prelante": 504
+  },
+  {
+    "id_materia": 605,
+    "id_prelante": 505
+  },
+  {
+    "id_materia": 606,
+    "id_prelante": 506
+  },
+  {
+    "id_materia": 608,
+    "id_prelante": 508
+  },
+  {
+    "id_materia": 701,
+    "id_prelante": 601
+  },
+  {
+    "id_materia": 701,
+    "id_prelante": 602
+  },
+  {
+    "id_materia": 703,
+    "id_prelante": 603
+  },
+  {
+    "id_materia": 705,
+    "id_prelante": 605
+  },
+  {
+    "id_materia": 709,
+    "id_prelante": 608
+  },
+  {
+    "id_materia": 801,
+    "id_prelante": 701
+  },
+  {
+    "id_materia": 803,
+    "id_prelante": 703
+  },
+  {
+    "id_materia": 804,
+    "id_prelante": 705
+  },
+  {
+    "id_materia": 805,
+    "id_prelante": 706
+  },
+  {
+    "id_materia": 808,
+    "id_prelante": 709
+  }
+]
