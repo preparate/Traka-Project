@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model estudiantes {
+  id_estudiante      Int                  @id @default(autoincrement())
+  cedula             String               @unique @db.VarChar(15)
+  nombre             String               @db.VarChar(50)
+  apellido           String               @db.VarChar(50)
+  email              String               @unique @db.VarChar(100)
+  contrase_a         String               @map("contraseña") @db.VarChar(255)
+  fecha_registro     DateTime?            @default(now()) @db.Timestamp(6)
+  progreso_academico progreso_academico[]
+}
+
+model materias {
+  id_materia                                    Int                  @id
+  codigo                                        String               @unique @db.VarChar(20)
+  nombre                                        String               @db.VarChar(100)
+  semestre                                      Int
+  uc                                            Int
+  prelaciones_prelaciones_id_materiaTomaterias  prelaciones[]        @relation("prelaciones_id_materiaTomaterias")
+  prelaciones_prelaciones_id_prelanteTomaterias prelaciones[]        @relation("prelaciones_id_prelanteTomaterias")
+  progreso_academico                            progreso_academico[]
+
+  @@index([codigo], map: "idx_materias_codigo")
+  @@index([semestre], map: "idx_materias_semestre")
+}
+
+model prelaciones {
+  id_materia                                 Int
+  id_prelante                                Int
+  materias_prelaciones_id_materiaTomaterias  materias @relation("prelaciones_id_materiaTomaterias", fields: [id_materia], references: [id_materia], onDelete: NoAction, onUpdate: NoAction)
+  materias_prelaciones_id_prelanteTomaterias materias @relation("prelaciones_id_prelanteTomaterias", fields: [id_prelante], references: [id_materia], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([id_materia, id_prelante])
+  @@index([id_materia], map: "idx_prelaciones_materia")
+  @@index([id_prelante], map: "idx_prelaciones_prelante")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model progreso_academico {
+  id_estudiante    Int
+  id_materia       Int
+  estado           estado_materia? @default(pendiente)
+  nota             Decimal?        @db.Decimal(4, 2)
+  fecha_aprobacion DateTime?       @db.Date
+  estudiantes      estudiantes     @relation(fields: [id_estudiante], references: [id_estudiante], onDelete: Cascade, onUpdate: NoAction)
+  materias         materias        @relation(fields: [id_materia], references: [id_materia], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([id_estudiante, id_materia])
+  @@index([id_estudiante], map: "idx_progreso_estudiante")
+  @@index([id_materia], map: "idx_progreso_materia")
+}
+
+enum estado_materia {
+  pendiente
+  en_curso  @map("en curso")
+  aprobada
+}
