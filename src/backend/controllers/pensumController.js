@@ -2,12 +2,13 @@ const prisma = require('../config/prisma');
 
 const getPensum = async (req, res) => {
     try {
-        const id_estudiante = 1; // ID fijo para demostración
+        // Obtenemos el ID de la URL (query string)
+        const id_estudiante = parseInt(req.query.id_usuario); 
         
+        if (!id_estudiante) return res.status(400).json({ error: 'ID de usuario es requerido' });
+
         const materias = await prisma.materias.findMany({
-            include: {
-                prelaciones_prelaciones_id_materiaTomaterias: true
-            },
+            include: { prelaciones_prelaciones_id_materiaTomaterias: true },
             orderBy: { semestre: 'asc' }
         });
         
@@ -36,46 +37,35 @@ const getPensum = async (req, res) => {
 };
 
 const resetProgreso = async (req, res) => {
-    const id_estudiante = 1; // ID fijo
+    // Para borrar, también necesitamos saber de quién
+    const id_estudiante = parseInt(req.body.id_usuario); 
     try {
         await prisma.progreso_academico.deleteMany({
             where: { id_estudiante }
         });
         res.json({ message: 'Progreso reiniciado con éxito' });
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'Error al reiniciar el progreso' });
     }
 };
 
 const updateProgreso = async (req, res) => {
-    const { id_materia, estado } = req.body;
-    const id_estudiante = 1; // ID fijo para demostración
+    // Aquí recibimos el ID del estudiante en el cuerpo del mensaje (body)
+    const { id_materia, estado, id_usuario } = req.body;
+    const id_estudiante = parseInt(id_usuario);
     
     try {
         const actualizacion = await prisma.progreso_academico.upsert({
             where: {
-                id_estudiante_id_materia: {
-                    id_estudiante,
-                    id_materia
-                }
+                id_estudiante_id_materia: { id_estudiante, id_materia }
             },
             update: { estado },
-            create: {
-                id_estudiante,
-                id_materia,
-                estado
-            }
+            create: { id_estudiante, id_materia, estado }
         });
         res.json(actualizacion);
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'Error al actualizar el progreso' });
     }
 };
 
-module.exports = {
-    getPensum,
-    resetProgreso,
-    updateProgreso
-};
+module.exports = { getPensum, resetProgreso, updateProgreso };
